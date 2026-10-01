@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/tsicb/job-tag-alias-master/schema/job-tags.schema.json",
+  "title": "Job Tag Alias Master",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "snapshot_date",
+    "source",
+    "stats",
+    "tags"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "spreadsheet_title",
+        "spreadsheet_id",
+        "sheet_name",
+        "alias_delimiter"
+      ],
+      "properties": {
+        "spreadsheet_title": {
+          "type": "string"
+        },
+        "spreadsheet_id": {
+          "type": "string"
+        },
+        "sheet_name": {
+          "type": "string"
+        },
+        "alias_delimiter": {
+          "const": "::"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "tag_code",
+          "major_category",
+          "middle_category",
+          "job_tag",
+          "canonical",
+          "alias_strict",
+          "alias_loose",
+          "difficulty",
+          "exclude_terms",
+          "match_policy",
+          "pattern_rule"
+        ],
+        "properties": {
+          "tag_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "major_category": {
+            "type": "string"
+          },
+          "middle_category": {
+            "type": "string"
+          },
+          "job_tag": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonical": {
+            "type": "string",
+            "minLength": 1
+          },
+          "alias_strict": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "alias_loose": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "difficulty": {
+            "enum": [
+              "低",
+              "中",
+              "高"
+            ]
+          },
+          "exclude_terms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "match_policy": {
+            "enum": [
+              "normal",
+              "strict_only",
+              "context",
+              "pattern"
+            ]
+          },
+          "pattern_rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
