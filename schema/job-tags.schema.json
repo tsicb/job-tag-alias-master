@@ -117,7 +117,8 @@
               "normal",
               "strict_only",
               "context",
-              "pattern"
+              "pattern",
+              "token_exact"
             ]
           },
           "pattern_rule": {
