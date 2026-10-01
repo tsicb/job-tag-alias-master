@@ -5,26 +5,15 @@ const outputPath = new URL("../data/job-tags.json", import.meta.url);
 
 function parseCsv(text) {
   const rows = [];
-  let row = [];
-  let cell = "";
-  let quoted = false;
-
+  let row = [], cell = "", quoted = false;
   for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    const next = text[i + 1];
-
+    const ch = text[i], next = text[i + 1];
     if (quoted) {
-      if (ch === '"' && next === '"') {
-        cell += '"';
-        i++;
-      } else if (ch === '"') {
-        quoted = false;
-      } else {
-        cell += ch;
-      }
+      if (ch === '"' && next === '"') { cell += '"'; i++; }
+      else if (ch === '"') quoted = false;
+      else cell += ch;
       continue;
     }
-
     if (ch === '"') quoted = true;
     else if (ch === ",") { row.push(cell); cell = ""; }
     else if (ch === "\n") {
@@ -36,12 +25,8 @@ function parseCsv(text) {
   return rows;
 }
 
-function splitList(value) {
-  return String(value ?? "").split("::").map((v) => v.trim()).filter(Boolean);
-}
-
-const raw = fs.readFileSync(inputPath, "utf8");
-const table = parseCsv(raw);
+const splitList = (v) => String(v ?? "").split("::").map((x) => x.trim()).filter(Boolean);
+const table = parseCsv(fs.readFileSync(inputPath, "utf8"));
 const headers = table[0];
 const idx = Object.fromEntries(headers.map((h, i) => [h, i]));
 
@@ -73,10 +58,10 @@ for (const tag of tags) {
 const collisions = [...aliasOwners.values()].filter((owners) => owners.size > 1).length;
 
 const output = {
-  schema_version: "0.2.0",
+  schema_version: "0.3.0",
   snapshot_date: new Date().toISOString().slice(0, 10),
   source: {
-    spreadsheet_title: "求人タグ_aliasマスタ_第3版候補",
+    spreadsheet_title: "求人タグ_aliasマスタ_第3版",
     spreadsheet_id: "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
     sheet_name: "求人タグ",
     alias_delimiter: "::"
