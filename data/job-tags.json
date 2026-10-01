@@ -2,23 +2,23 @@
   "schema_version": "0.3.0",
   "snapshot_date": "2026-10-02",
   "source": {
-    "spreadsheet_title": "求人タグ_aliasマスタ_第3版候補",
+    "spreadsheet_title": "求人タグ_aliasマスタ_第3版",
     "spreadsheet_id": "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
     "sheet_name": "求人タグ",
     "alias_delimiter": "::"
   },
   "stats": {
     "tag_count": 1617,
-    "strict_alias_coverage": 618,
+    "strict_alias_coverage": 619,
     "loose_alias_coverage": 41,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
-      "normal": 1494,
-      "token_exact": 56,
-      "context": 62,
-      "pattern": 5
+      "token_exact": 116,
+      "normal": 1321,
+      "context": 173,
+      "pattern": 7
     },
-    "pattern_rule_count": 5
+    "pattern_rule_count": 7
   },
   "tags": [
     {
@@ -31,7 +31,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -127,7 +127,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -231,7 +231,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -244,7 +244,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -921,7 +921,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -973,7 +973,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1051,7 +1051,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1064,7 +1064,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1103,7 +1103,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1624,7 +1624,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1689,7 +1689,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1775,7 +1775,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1909,7 +1909,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1935,7 +1935,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2117,7 +2117,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2208,7 +2208,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2224,7 +2224,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2250,7 +2250,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2263,7 +2263,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2617,7 +2617,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2773,7 +2773,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2799,7 +2799,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2812,7 +2812,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2851,7 +2851,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2890,7 +2890,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3033,7 +3033,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3338,7 +3338,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3351,7 +3351,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3390,7 +3390,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3559,7 +3559,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3572,7 +3572,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3585,7 +3585,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3663,7 +3663,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3715,7 +3715,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3728,7 +3728,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3767,7 +3767,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3834,7 +3834,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3847,7 +3847,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4055,7 +4055,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4159,7 +4159,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4224,7 +4224,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4406,7 +4406,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4419,7 +4419,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4484,7 +4484,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4536,7 +4536,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4627,7 +4627,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4731,7 +4731,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4770,7 +4770,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4796,7 +4796,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4809,7 +4809,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4822,7 +4822,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4861,7 +4861,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4939,7 +4939,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -5510,7 +5510,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "整体院"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -5664,7 +5666,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "透析施設"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7313,7 +7317,11 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "低",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "PCスキル不要",
+        "パソコンスキル不要",
+        "PCスキル不問"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7710,7 +7718,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -7723,7 +7731,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -8286,8 +8294,8 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
-      "pattern_rule": null
+      "match_policy": "pattern",
+      "pattern_rule": "REGEX:1日(?:の)?(?:実働)?[^\\d\\n]{0,8}(\\d+(?:\\.\\d+)?)\\s*(?:時間|h)(?:以内|まで); TEST:value<=4"
     },
     {
       "tag_code": "619",
@@ -8722,7 +8730,9 @@
       "exclude_terms": [
         "残業あり",
         "固定残業代",
-        "残業手当"
+        "残業手当",
+        "サービス残業なし",
+        "サービス残業無し"
       ],
       "match_policy": "normal",
       "pattern_rule": null
@@ -8912,7 +8922,6 @@
       "canonical": "週3・4日からOK",
       "alias_strict": [
         "週3～4日からOK",
-        "週4日からOK",
         "週3・4日～OK",
         "週3・4日から可"
       ],
@@ -8930,7 +8939,12 @@
       "canonical": "週4日以上OK",
       "alias_strict": [
         "週4日～OK",
-        "週4日以上可"
+        "週4日以上可",
+        "週4日以上",
+        "週4日～",
+        "週4日からOK",
+        "週4日から可",
+        "週4日以上勤務OK"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -8998,7 +9012,13 @@
       "middle_category": "応募資格・採用条件",
       "job_tag": "18歳以上",
       "canonical": "18歳以上",
-      "alias_strict": [],
+      "alias_strict": [
+        "18才以上",
+        "18歳～",
+        "18才～",
+        "18歳から",
+        "18才から"
+      ],
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
@@ -9890,7 +9910,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9903,7 +9923,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9916,7 +9936,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9942,7 +9962,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9955,7 +9975,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9968,7 +9988,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9994,7 +10014,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10007,7 +10027,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10020,7 +10040,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10033,7 +10053,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10046,7 +10066,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10072,7 +10092,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10098,7 +10118,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10111,7 +10131,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10124,7 +10144,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10150,7 +10170,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10163,7 +10183,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10176,7 +10196,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10202,7 +10222,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10215,7 +10235,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10228,7 +10248,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10241,7 +10261,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10254,7 +10274,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10280,7 +10300,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10293,7 +10313,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10306,7 +10326,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10319,7 +10339,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10332,7 +10352,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10345,7 +10365,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10371,7 +10391,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10384,7 +10404,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10410,7 +10430,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10423,7 +10443,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10436,7 +10456,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10449,7 +10469,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10462,7 +10482,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10475,7 +10495,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10488,7 +10508,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10501,7 +10521,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10527,7 +10547,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10540,7 +10560,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10553,7 +10573,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10566,7 +10586,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10579,7 +10599,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10592,7 +10612,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10605,7 +10625,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10618,7 +10638,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10631,7 +10651,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10644,7 +10664,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10670,7 +10690,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10683,7 +10703,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10696,7 +10716,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10709,7 +10729,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10722,7 +10742,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10735,7 +10755,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10761,7 +10781,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10774,7 +10794,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10805,7 +10825,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10818,7 +10838,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10844,7 +10864,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10870,7 +10890,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10883,7 +10903,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10896,7 +10916,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10909,7 +10929,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10948,7 +10968,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10961,7 +10981,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10974,7 +10994,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11000,7 +11020,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11013,7 +11033,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11026,7 +11046,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11052,7 +11072,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11091,7 +11111,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11187,7 +11207,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11213,7 +11233,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11226,7 +11246,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11239,7 +11259,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11252,7 +11272,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11265,7 +11285,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11343,7 +11363,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11395,7 +11415,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11408,7 +11428,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11434,7 +11454,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11460,7 +11480,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11473,7 +11493,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11486,7 +11506,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11512,7 +11532,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11551,7 +11571,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11564,7 +11584,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11590,7 +11610,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11616,7 +11636,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11655,7 +11675,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11707,7 +11727,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11720,7 +11740,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11746,7 +11766,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11772,7 +11792,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11785,7 +11805,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11798,7 +11818,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11811,7 +11831,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11863,7 +11883,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11876,7 +11896,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11902,7 +11922,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11915,7 +11935,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11928,7 +11948,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11954,7 +11974,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11980,7 +12000,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12058,7 +12078,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12071,7 +12091,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12110,7 +12130,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12123,7 +12143,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -14245,7 +14265,11 @@
       ],
       "alias_loose": [],
       "difficulty": "中",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "家族誕生日休暇あり",
+        "家族誕生日休暇有り",
+        "家族誕生日休暇"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -19140,7 +19164,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19153,7 +19177,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19166,7 +19190,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19274,7 +19298,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19287,7 +19311,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19389,7 +19413,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -21751,7 +21775,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -22778,8 +22802,8 @@
       ],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
-      "pattern_rule": null
+      "match_policy": "pattern",
+      "pattern_rule": "REGEX:(?:最寄(?:り)?駅|[一-龠ぁ-んァ-ヶA-Za-z0-9・ー]+駅)(?:から|より)?[^\\n\\d]{0,8}徒歩\\s*(\\d+(?:\\.\\d+)?)\\s*分; TEST:value<=5"
     },
     {
       "tag_code": "1624",
