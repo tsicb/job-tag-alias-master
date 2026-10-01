@@ -9,8 +9,8 @@
   },
   "stats": {
     "tag_count": 1617,
-    "strict_alias_coverage": 619,
-    "loose_alias_coverage": 41,
+    "strict_alias_coverage": 625,
+    "loose_alias_coverage": 44,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
       "token_exact": 116,
@@ -8386,7 +8386,19 @@
       "middle_category": "シフト・スケジュール",
       "job_tag": "三交代制",
       "canonical": "三交代制",
-      "alias_strict": [],
+      "alias_strict": [
+        "三交代",
+        "3交代制",
+        "3交代",
+        "三交替制",
+        "三交替",
+        "3交替制",
+        "3交替",
+        "三交代勤務",
+        "3交代勤務",
+        "三交替勤務",
+        "3交替勤務"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -8412,7 +8424,19 @@
       "middle_category": "シフト・スケジュール",
       "job_tag": "二交代制",
       "canonical": "二交代制",
-      "alias_strict": [],
+      "alias_strict": [
+        "二交代",
+        "2交代制",
+        "2交代",
+        "二交替制",
+        "二交替",
+        "2交替制",
+        "2交替",
+        "二交代勤務",
+        "2交代勤務",
+        "二交替勤務",
+        "2交替勤務"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9057,7 +9081,10 @@
       "middle_category": "応募資格・採用条件",
       "job_tag": "例外事由3号イ",
       "canonical": "例外事由3号イ",
-      "alias_strict": [],
+      "alias_strict": [
+        "例外事由3号のイ",
+        "例外事由3号 イ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9070,7 +9097,10 @@
       "middle_category": "応募資格・採用条件",
       "job_tag": "例外事由3号ニ",
       "canonical": "例外事由3号ニ",
-      "alias_strict": [],
+      "alias_strict": [
+        "例外事由3号のニ",
+        "例外事由3号 ニ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9083,7 +9113,10 @@
       "middle_category": "応募資格・採用条件",
       "job_tag": "例外事由3号ロ",
       "canonical": "例外事由3号ロ",
-      "alias_strict": [],
+      "alias_strict": [
+        "例外事由3号のロ",
+        "例外事由3号 ロ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -12235,7 +12268,13 @@
       "job_tag": "U・Iターン支援あり",
       "canonical": "U・Iターン支援あり",
       "alias_strict": [
-        "U・Iターン支援有り"
+        "U・Iターン支援有り",
+        "UIターン支援あり",
+        "UIターン支援有り",
+        "U/Iターン支援あり",
+        "U/Iターン支援有り",
+        "Uターン・Iターン支援あり",
+        "Uターン・Iターン支援有り"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -16165,7 +16204,9 @@
       "alias_strict": [
         "作業療法士"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "OT"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -17444,7 +17485,9 @@
       "alias_strict": [
         "理学療法士"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "PT"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -18128,7 +18171,9 @@
       "alias_strict": [
         "言語聴覚士"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "ST"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -20894,7 +20939,12 @@
       "middle_category": "応募歓迎",
       "job_tag": "U・Iターン歓迎",
       "canonical": "U・Iターン歓迎",
-      "alias_strict": [],
+      "alias_strict": [
+        "UIターン歓迎",
+        "U/Iターン歓迎",
+        "Uターン・Iターン歓迎",
+        "Uターン/Iターン歓迎"
+      ],
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
