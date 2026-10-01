@@ -25,34 +25,19 @@ function parseCsv(text) {
       continue;
     }
 
-    if (ch === '"') {
-      quoted = true;
-    } else if (ch === ",") {
-      row.push(cell);
-      cell = "";
-    } else if (ch === "\n") {
+    if (ch === '"') quoted = true;
+    else if (ch === ",") { row.push(cell); cell = ""; }
+    else if (ch === "\n") {
       if (cell.endsWith("\r")) cell = cell.slice(0, -1);
-      row.push(cell);
-      rows.push(row);
-      row = [];
-      cell = "";
-    } else {
-      cell += ch;
-    }
+      row.push(cell); rows.push(row); row = []; cell = "";
+    } else cell += ch;
   }
-
-  if (cell.length || row.length) {
-    row.push(cell);
-    rows.push(row);
-  }
+  if (cell.length || row.length) { row.push(cell); rows.push(row); }
   return rows;
 }
 
 function splitList(value) {
-  return String(value ?? "")
-    .split("::")
-    .map((v) => v.trim())
-    .filter(Boolean);
+  return String(value ?? "").split("::").map((v) => v.trim()).filter(Boolean);
 }
 
 const raw = fs.readFileSync(inputPath, "utf8");
@@ -75,9 +60,7 @@ const tags = table.slice(1).filter((r) => r.some(Boolean)).map((r) => ({
 }));
 
 const policyCounts = {};
-for (const tag of tags) {
-  policyCounts[tag.match_policy] = (policyCounts[tag.match_policy] || 0) + 1;
-}
+for (const tag of tags) policyCounts[tag.match_policy] = (policyCounts[tag.match_policy] || 0) + 1;
 
 const aliasOwners = new Map();
 for (const tag of tags) {
@@ -93,8 +76,8 @@ const output = {
   schema_version: "0.2.0",
   snapshot_date: new Date().toISOString().slice(0, 10),
   source: {
-    spreadsheet_title: "求人タグ_aliasマスタ_第2版",
-    spreadsheet_id: "1VuC-i92PiAr3jh44OlzivrAB2x-63kEWy5oTYEOZQ8s",
+    spreadsheet_title: "求人タグ_aliasマスタ_第3版候補",
+    spreadsheet_id: "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
     sheet_name: "求人タグ",
     alias_delimiter: "::"
   },
