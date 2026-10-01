@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "snapshot_date": "2026-10-01",
+  "schema_version": "0.3.0",
+  "snapshot_date": "2026-10-02",
   "source": {
     "spreadsheet_title": "求人タグ_aliasマスタ_第3版候補",
     "spreadsheet_id": "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
@@ -13,8 +13,9 @@
     "loose_alias_coverage": 41,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
-      "normal": 1610,
-      "context": 2,
+      "normal": 1494,
+      "token_exact": 56,
+      "context": 62,
       "pattern": 5
     },
     "pattern_rule_count": 5
@@ -45,7 +46,7 @@
       ],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -71,7 +72,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -97,7 +98,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -110,7 +111,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -152,7 +153,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -204,7 +205,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -256,7 +257,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -269,7 +270,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -946,7 +947,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -985,7 +986,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1037,7 +1038,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1675,7 +1676,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1841,7 +1842,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -1975,7 +1976,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2538,7 +2539,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2629,7 +2630,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2655,7 +2656,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2694,7 +2695,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -2824,7 +2825,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3255,7 +3256,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3597,7 +3598,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3610,7 +3611,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3636,7 +3637,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3649,7 +3650,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3675,7 +3676,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3688,7 +3689,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3740,7 +3741,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3792,7 +3793,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3859,7 +3860,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3872,7 +3873,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3885,7 +3886,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3898,7 +3899,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3937,7 +3938,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -3950,7 +3951,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4041,7 +4042,7 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4106,7 +4107,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4184,7 +4185,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4197,7 +4198,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4210,7 +4211,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4249,7 +4250,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4353,7 +4354,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4431,7 +4432,7 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4457,7 +4458,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4561,7 +4562,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4639,7 +4640,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4704,7 +4705,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4743,7 +4744,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4886,7 +4887,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -4977,7 +4978,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -5016,7 +5017,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -5587,7 +5588,13 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "准看護師手当",
+        "正看護師手当",
+        "准看護師免許",
+        "看護師免許",
+        "認定動物看護師資格"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -5613,7 +5620,12 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "臨床工学技士免許",
+        "臨床検査技師免許",
+        "臨床心理士資格",
+        "臨床発達心理士資格"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -5873,7 +5885,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "調理師免許"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -6421,7 +6435,13 @@
         "保育業務経験"
       ],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "保育園",
+        "保育所",
+        "保育士免許",
+        "保育料補助",
+        "慣らし保育"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -6564,7 +6584,13 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "児童指導員任用資格",
+        "職業訓練指導員免許",
+        "警備員指導教育責任者免許",
+        "健康運動実践指導者資格",
+        "健康運動指導士資格"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -6656,7 +6682,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -6720,7 +6746,13 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "工事現場",
+        "施工管理技士免許",
+        "工事担任者免許",
+        "工事監督者免許",
+        "基礎工事用"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -6889,7 +6921,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "製造保安責任者免許"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7487,7 +7521,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "事務所"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7552,7 +7588,11 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "接客なし",
+        "接客無し",
+        "接客ナシ"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7696,7 +7736,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -7760,7 +7800,10 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "運転技能講習",
+        "運転記録証明書"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7787,7 +7830,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -7813,7 +7856,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -7981,7 +8024,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "人事異動"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -7994,7 +8039,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "社会保険労務士"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -8057,7 +8104,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "清掃作業監督者講習"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -8755,7 +8804,11 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "深夜勤務なし",
+        "深夜勤務無し",
+        "深夜勤務ナシ"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -9806,7 +9859,11 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "長期休暇あり",
+        "長期休暇有り",
+        "長期休暇"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -9872,7 +9929,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -9924,7 +9981,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10002,7 +10059,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10028,7 +10085,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10080,7 +10137,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10132,7 +10189,7 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10210,7 +10267,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10301,7 +10358,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10340,7 +10397,7 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10457,7 +10514,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10600,7 +10657,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10691,7 +10748,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10774,7 +10831,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10800,7 +10857,7 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10865,7 +10922,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10878,7 +10935,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10930,7 +10987,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -10982,7 +11039,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11008,7 +11065,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11021,7 +11078,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11047,7 +11104,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11060,7 +11117,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11073,7 +11130,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11086,7 +11143,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11117,7 +11174,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11143,7 +11200,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11221,7 +11278,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11234,7 +11291,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11247,7 +11304,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11260,7 +11317,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11273,7 +11330,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11299,7 +11356,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11312,7 +11369,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11325,7 +11382,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11364,7 +11421,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11390,7 +11447,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11442,7 +11499,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11468,7 +11525,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11481,7 +11538,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11520,7 +11577,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11546,7 +11603,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11572,7 +11629,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11585,7 +11642,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11611,7 +11668,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11624,7 +11681,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11637,7 +11694,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11676,7 +11733,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11702,7 +11759,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11767,7 +11824,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11780,7 +11837,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11832,7 +11889,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11884,7 +11941,7 @@
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11910,7 +11967,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11936,7 +11993,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11949,7 +12006,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11962,7 +12019,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11975,7 +12032,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -11988,7 +12045,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12027,7 +12084,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12040,7 +12097,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "context",
       "pattern_rule": null
     },
     {
@@ -12135,7 +12192,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
@@ -19010,7 +19067,12 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "英語力不要",
+        "英語不要",
+        "英語スキル不要",
+        "英語力不問"
+      ],
       "match_policy": "normal",
       "pattern_rule": null
     },
@@ -19296,7 +19358,7 @@
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
-      "match_policy": "normal",
+      "match_policy": "token_exact",
       "pattern_rule": null
     },
     {
