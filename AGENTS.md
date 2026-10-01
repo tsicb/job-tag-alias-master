@@ -1,57 +1,57 @@
 # AGENTS.md
 
-このリポジトリは、求人広告テキストから求人タグ候補を抽出するためのタグマスタと判定仕様を管理する。
+このリポジトリは求人広告テキストから求人タグ候補を抽出するためのマスタと判定仕様を管理する。
 
 ## 最初に読むもの
 
 1. `README.md`
 2. `docs/schema.md`
 3. `docs/matching-rules.md`
-4. 必要に応じて `docs/examples.md`
-5. 実データは `data/job-tags.json` または `data/job-tags.csv`
+4. `config/matching-defaults.json`
+5. 必要に応じて `docs/examples.md`
+6. 実データは `data/job-tags.json` / `data/job-tags.csv`
 
-## 正本
+## 主要原則
 
-- Google Sheets: 人が編集・レビューする作業用マスタ
-- GitHub: 仕様書、変更履歴、アプリ向け配布スナップショット
+- aliasは原則として同義表現。
+- `alias_strict` は比較的安全な同義表現。
+- `alias_loose` は文脈依存性があり、自動確定より確認候補を優先。
+- 給与条件は意味推測で広げない。
+- 就業場所は施設名の出現だけで確定しない。
+- 除外語は文書全体ではなく、誤爆する出現箇所へ局所適用する。
 
-## 主要フィールド
+## 短いASCII語・alias
 
-- `canonical`: 判定基準の代表表記
-- `alias_strict`: 比較的安全な同義表現
-- `alias_loose`: 文脈依存の近似表現
-- `除外語`: 誤爆する特定の出現箇所を局所的に抑止する表現
-- `match_policy`: `normal` / `strict_only` / `context` / `pattern` / `token_exact`
-- `pattern_rule`: 数値・構造判定ルール
+`token_exact` および3文字以下のASCII aliasはraw substring禁止。
 
-CSVの複数値は `::` 区切り、JSONでは配列。
+ASCII token文字を `[A-Za-z0-9_]` とし、候補語の直前・直後がASCII token文字でない場合だけ一致させる。
 
-## 判定原則
+- `AI活用`、`生成AI` → AIに一致
+- `mail` → AIに一致しない
+- `STスタッフ` → STに一致
+- `staff` → STに一致しない
+- `JavaScript` → Javaに一致しない
+- `GitHub` → Gitに一致しない
 
-- aliasは関連語ではなく、原則として同義表現。
-- 給与条件は厳格に扱い、「月給」等を「固定給」へ推測変換しない。
-- 一般名詞・短語をraw substringだけで確定しない。
-- 就業場所タグは施設名の出現だけで確定しない。勤務地・勤務先・配属先・施設内勤務等の文脈を要求する。
-- `token_exact` は短い英数字タグ向け。raw substringは禁止し、トークン境界で判定する。
-- 除外語は文書全体を無効化せず、canonical / aliasと重なるか近接する出現箇所を抑止する。
-- より具体的な表現・否定表現を先に評価する。
+日本語文字との直結は許容する。
 
-## 代表例
+PT / OT / ST はそれぞれ理学療法士 / 作業療法士 / 言語聴覚士のloose aliasとして登録している。資格・職種の意味が文脈で曖昧な場合は自動確定よりreviewを優先する。
 
-- `病院へ医薬品を配送` → 就業場所「病院」を確定しない。
-- `JavaScript` → `Java` をsubstringだけで付与しない。
-- `GitHub` → `Git` をsubstringだけで付与しない。
-- `英語力不要` → 「英語」の該当出現を除外。
-- `保育園で保育業務` → 「保育園」内の「保育」は抑止し、「保育業務」は有効にできる。
-- `固定給26万円` → 固定給25万円以上のpattern候補。
-- `月給26万円` → 固定給タグには変換しない。
+## 許可表現の助詞ゆれ
+
+canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前の `も` を任意として扱う。
+
+例:
+- `車通勤可` ≒ `車通勤も可`
+- `副業OK` ≒ `副業もOK`
+
+一般的な「も」の削除は行わず、この語尾ルールに限定する。
 
 ## 変更時チェック
 
-1. tag_code / canonical件数が意図せず変わっていないか
-2. aliasの別canonical間衝突がないか
+1. tag_code / canonical件数
+2. aliasの別canonical間衝突
 3. aliasが意味を広げすぎていないか
-4. context / pattern / token_exactをnormal substringで扱っていないか
-5. 除外語を文書全体抑止として実装していないか
-6. CSVとJSONを再生成したか
-7. JSON SchemaとCHANGELOGを更新したか
+4. context / pattern / token_exactをraw substringで扱っていないか
+5. 短いASCII aliasへtoken境界ルールを適用しているか
+6. CSV / JSON / config / CHANGELOGを同期したか
