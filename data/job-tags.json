@@ -2,8 +2,8 @@
   "schema_version": "0.2.0",
   "snapshot_date": "2026-10-01",
   "source": {
-    "spreadsheet_title": "求人タグ_aliasマスタ_第2版",
-    "spreadsheet_id": "1VuC-i92PiAr3jh44OlzivrAB2x-63kEWy5oTYEOZQ8s",
+    "spreadsheet_title": "求人タグ_aliasマスタ_第3版候補",
+    "spreadsheet_id": "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
     "sheet_name": "求人タグ",
     "alias_delimiter": "::"
   },
@@ -13,11 +13,11 @@
     "loose_alias_coverage": 41,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
-      "normal": 1612,
+      "normal": 1610,
       "context": 2,
-      "pattern": 3
+      "pattern": 5
     },
-    "pattern_rule_count": 3
+    "pattern_rule_count": 5
   },
   "tags": [
     {
@@ -14600,8 +14600,8 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
-      "pattern_rule": null
+      "match_policy": "pattern",
+      "pattern_rule": "REGEX:固定給(?:制)?(?:\\s|[:：]|は|が|月額|[()（）]){0,10}(\\d{1,3}(?:,\\d{3})*|\\d+(?:\\.\\d+)?)\\s*(万円|万|円); PARSE:jpy; TEST:value>=250000"
     },
     {
       "tag_code": "1071",
@@ -14613,8 +14613,8 @@
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
-      "match_policy": "normal",
-      "pattern_rule": null
+      "match_policy": "pattern",
+      "pattern_rule": "REGEX:固定給(?:制)?(?:\\s|[:：]|は|が|月額|[()（）]){0,10}(\\d{1,3}(?:,\\d{3})*|\\d+(?:\\.\\d+)?)\\s*(万円|万|円); PARSE:jpy; TEST:value>=350000"
     },
     {
       "tag_code": "1072",
