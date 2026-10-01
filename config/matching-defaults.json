@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1.0",
+  "normalization": {
+    "unicode": "NFKC",
+    "ascii_case_insensitive": true
+  },
+  "token_matching": {
+    "ascii_token_char_class": "[A-Za-z0-9_]",
+    "rule": "A token matches only when the characters immediately before and after the candidate are not ASCII token characters.",
+    "allow_non_ascii_adjacency": true,
+    "applies_to": [
+      "canonical/aliases of tags whose match_policy is token_exact",
+      "ASCII aliases of length 3 or less, including PT, OT and ST"
+    ],
+    "examples": {
+      "match": [
+        "AI活用",
+        "生成AI",
+        "PT・OT・ST",
+        "STスタッフ"
+      ],
+      "no_match": [
+        "mail",
+        "staff",
+        "JavaScript for Java",
+        "GitHub for Git"
+      ]
+    }
+  },
+  "allowance_suffix_variants": {
+    "enabled": true,
+    "suffixes": [
+      "可",
+      "OK"
+    ],
+    "optional_particles": [
+      "も"
+    ],
+    "scope": "Only insert the optional particle immediately before the terminal allowance suffix of a canonical or strict alias.",
+    "examples": {
+      "車通勤可": [
+        "車通勤可",
+        "車通勤も可"
+      ],
+      "副業OK": [
+        "副業OK",
+        "副業もOK"
+      ]
+    }
+  }
+}
