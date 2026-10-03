@@ -14,8 +14,8 @@
 ## 主要原則
 
 - aliasは原則として同義表現。
-- `alias_strict` は比較的安全な同義表現。
-- `alias_loose` は文脈依存性があり、自動確定より確認候補を優先。
+- `alias_strict` は比較的安全な同義表現、またはその表現があればcanonicalの条件を確実に満たす表現。
+- `alias_loose` は文脈依存性・意味の広さがあり、自動確定より確認候補を優先。
 - 給与条件は意味推測で広げない。
 - 就業場所は施設名の出現だけで確定しない。
 - 除外語は文書全体ではなく、誤爆する出現箇所へ局所適用する。
@@ -55,3 +55,10 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 4. context / pattern / token_exactをraw substringで扱っていないか
 5. 短いASCII aliasへtoken境界ルールを適用しているか
 6. CSV / JSON / config / CHANGELOGを同期したか
+
+## alias追加時の境界
+
+- 別canonicalが既に存在する語を、別タグのaliasへ統合しない。
+- 表記揺れの横断追加は、canonical衝突・alias衝突が0件であることを確認してから反映する。
+- NFKCで吸収できる全角/半角差はaliasへ過剰追加しない。
+- 「短期3ヶ月」のように閾値条件を保証しない表現はlooseへ置く。
