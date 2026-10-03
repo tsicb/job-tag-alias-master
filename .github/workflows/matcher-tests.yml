@@ -1,0 +1,31 @@
+name: matcher-tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "matcher.js"
+      - "data/**"
+      - "config/**"
+      - "tests/**"
+      - "scripts/test.mjs"
+      - "package.json"
+      - ".github/workflows/matcher-tests.yml"
+  pull_request:
+    paths:
+      - "matcher.js"
+      - "data/**"
+      - "config/**"
+      - "tests/**"
+      - "scripts/test.mjs"
+      - "package.json"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test
