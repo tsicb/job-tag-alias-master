@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "normalization": {
     "unicode": "NFKC",
     "ascii_case_insensitive": true
@@ -36,7 +36,7 @@
     "optional_particles": [
       "も"
     ],
-    "scope": "Only insert the optional particle immediately before the terminal allowance suffix of a canonical or strict alias.",
+    "scope": "Insert the optional particle immediately before the terminal allowance suffix of canonical, strict aliases, and loose aliases. The generated variant keeps the original confidence level.",
     "examples": {
       "車通勤可": [
         "車通勤可",
@@ -45,6 +45,10 @@
       "副業OK": [
         "副業OK",
         "副業もOK"
+      ],
+      "フリーター可": [
+        "フリーター可",
+        "フリーターも可"
       ]
     }
   }
