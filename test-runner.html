@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Matcher Regression Tests</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">job-tag-alias-master</p>
+      <h1>回帰テスト</h1>
+      <p class="lead">マスタと判定ロジックの代表ケースをブラウザ上で検証します。</p>
+    </div>
+    <a href="./">判定テスターへ戻る</a>
+  </header>
+  <section class="panel">
+    <div class="actions">
+      <button id="runBtn" class="primary">テスト実行</button>
+      <span id="summary" class="status">準備中...</span>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>結果</th><th>テスト</th><th>入力</th><th>詳細</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script type="module">
+import { loadResources, analyzeText } from "./matcher.js";
+
+const runBtn = document.querySelector("#runBtn");
+const summary = document.querySelector("#summary");
+const rowsEl = document.querySelector("#rows");
+let resources;
+let cases;
+
+function has(list, canonical) {
+  return list.some(function(r) { return r.canonical === canonical; });
+}
+
+function run() {
+  rowsEl.replaceChildren();
+  let passed = 0;
+
+  for (const tc of cases) {
+    const result = analyzeText(tc.text, resources.master, resources.defaults);
+    const errors = [];
+
+    for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);
+    for (const c of tc.review || []) if (!has(result.review, c)) errors.push("要確認にならない: " + c);
+    for (const c of tc.absent || []) if (has(result.results, c)) errors.push("誤HIT: " + c);
+    for (const c of tc.notMatched || []) if (has(result.matched, c)) errors.push("誤確定: " + c);
+
+    const ok = errors.length === 0;
+    if (ok) passed++;
+
+    const tr = document.createElement("tr");
+    [ok ? "PASS" : "FAIL", tc.name, tc.text, ok ? "OK" : errors.join(" / ")].forEach(function(v, i) {
+      const td = document.createElement("td");
+      td.textContent = v;
+      if (i === 0) td.className = ok ? "decision decision-matched" : "decision decision-suppressed";
+      tr.appendChild(td);
+    });
+    rowsEl.appendChild(tr);
+  }
+
+  summary.textContent = passed + " / " + cases.length + " PASS";
+  summary.dataset.kind = passed === cases.length ? "ok" : "error";
+}
+
+(async function() {
+  try {
+    const values = await Promise.all([
+      loadResources(),
+      fetch("./tests/cases.json", { cache: "no-store" }).then(function(r) { return r.json(); })
+    ]);
+    resources = values[0];
+    cases = values[1];
+    summary.textContent = cases.length + " cases ready";
+    summary.dataset.kind = "ok";
+    runBtn.addEventListener("click", run);
+    run();
+  } catch (e) {
+    summary.textContent = e.message;
+    summary.dataset.kind = "error";
+  }
+})();
+</script>
+</body>
+</html>
