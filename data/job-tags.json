@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3.0",
-  "snapshot_date": "2026-10-03",
+  "snapshot_date": "2026-10-04",
   "source": {
     "spreadsheet_title": "求人タグ_aliasマスタ_第3版",
     "spreadsheet_id": "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
@@ -9,8 +9,8 @@
   },
   "stats": {
     "tag_count": 1617,
-    "strict_alias_coverage": 643,
-    "loose_alias_coverage": 47,
+    "strict_alias_coverage": 667,
+    "loose_alias_coverage": 80,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
       "token_exact": 116,
@@ -21061,9 +21061,30 @@
         "UIターン歓迎",
         "U/Iターン歓迎",
         "Uターン・Iターン歓迎",
-        "Uターン/Iターン歓迎"
+        "Uターン/Iターン歓迎",
+        "U・IターンOK",
+        "U・Iターン大歓迎",
+        "U・Iターン積極採用",
+        "UIターンOK",
+        "UIターン大歓迎",
+        "UIターン積極採用",
+        "U/IターンOK",
+        "U/Iターン大歓迎",
+        "U/Iターン積極採用",
+        "Uターン・IターンOK",
+        "Uターン・Iターン大歓迎",
+        "Uターン・Iターン積極採用",
+        "Uターン/IターンOK",
+        "Uターン/Iターン大歓迎",
+        "Uターン/Iターン積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "U・Iターン可",
+        "UIターン可",
+        "U/Iターン可",
+        "Uターン・Iターン可",
+        "Uターン/Iターン可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21075,8 +21096,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "インターン経験者歓迎",
       "canonical": "インターン経験者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "インターン経験者OK",
+        "インターン経験者大歓迎",
+        "インターン経験者積極採用"
+      ],
+      "alias_loose": [
+        "インターン経験者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21088,8 +21115,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "カップル歓迎",
       "canonical": "カップル歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "カップルOK",
+        "カップル大歓迎",
+        "カップル積極採用"
+      ],
+      "alias_loose": [
+        "カップル可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21101,8 +21134,44 @@
       "middle_category": "応募歓迎",
       "job_tag": "シングルマザー・ファーザー歓迎",
       "canonical": "シングルマザー・ファーザー歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "シングルマザー・シングルファーザー歓迎",
+        "シングルマザー・シングルファザー歓迎",
+        "シングルマザー／シングルファーザー歓迎",
+        "シングルマザー・ファーザーOK",
+        "シングルマザー・ファーザー大歓迎",
+        "シングルマザー・ファーザー積極採用",
+        "シングルマザー・シングルファーザーOK",
+        "シングルマザー・シングルファーザー大歓迎",
+        "シングルマザー・シングルファーザー積極採用",
+        "シングルマザー・シングルファザーOK",
+        "シングルマザー・シングルファザー大歓迎",
+        "シングルマザー・シングルファザー積極採用",
+        "シングルマザー／シングルファーザーOK",
+        "シングルマザー／シングルファーザー大歓迎",
+        "シングルマザー／シングルファーザー積極採用"
+      ],
+      "alias_loose": [
+        "シングルマザー歓迎",
+        "シングルファーザー歓迎",
+        "シングルファザー歓迎",
+        "シングルマザー・ファーザー可",
+        "シングルマザー・シングルファーザー可",
+        "シングルマザー・シングルファザー可",
+        "シングルマザー／シングルファーザー可",
+        "シングルマザーOK",
+        "シングルマザー大歓迎",
+        "シングルマザー積極採用",
+        "シングルマザー可",
+        "シングルファーザーOK",
+        "シングルファーザー大歓迎",
+        "シングルファーザー積極採用",
+        "シングルファーザー可",
+        "シングルファザーOK",
+        "シングルファザー大歓迎",
+        "シングルファザー積極採用",
+        "シングルファザー可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21114,8 +21183,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "ニート歓迎",
       "canonical": "ニート歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "ニートOK",
+        "ニート大歓迎",
+        "ニート積極採用"
+      ],
+      "alias_loose": [
+        "ニート可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21130,9 +21205,26 @@
       "alias_strict": [
         "アルバイトデビュー歓迎",
         "初バイト歓迎",
-        "バイト未経験歓迎"
+        "バイト未経験歓迎",
+        "バイトデビューOK",
+        "バイトデビュー大歓迎",
+        "バイトデビュー積極採用",
+        "アルバイトデビューOK",
+        "アルバイトデビュー大歓迎",
+        "アルバイトデビュー積極採用",
+        "初バイトOK",
+        "初バイト大歓迎",
+        "初バイト積極採用",
+        "バイト未経験OK",
+        "バイト未経験大歓迎",
+        "バイト未経験積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "バイトデビュー可",
+        "アルバイトデビュー可",
+        "初バイト可",
+        "バイト未経験可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21163,9 +21255,13 @@
       "job_tag": "フリーター歓迎",
       "canonical": "フリーター歓迎",
       "alias_strict": [
-        "フリーターOK"
+        "フリーターOK",
+        "フリーター大歓迎",
+        "フリーター積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "フリーター可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21177,8 +21273,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "フルタイム歓迎",
       "canonical": "フルタイム歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "フルタイムOK",
+        "フルタイム大歓迎",
+        "フルタイム積極採用"
+      ],
+      "alias_loose": [
+        "フルタイム可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21203,8 +21305,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "中卒歓迎",
       "canonical": "中卒歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "中卒OK",
+        "中卒大歓迎",
+        "中卒積極採用"
+      ],
+      "alias_loose": [
+        "中卒可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21217,11 +21325,42 @@
       "job_tag": "主婦・主夫歓迎",
       "canonical": "主婦・主夫歓迎",
       "alias_strict": [
-        "主婦主夫歓迎"
+        "主婦主夫歓迎",
+        "主婦（夫）歓迎",
+        "主ふ歓迎",
+        "主婦／主夫歓迎",
+        "主婦・主夫OK",
+        "主婦・主夫大歓迎",
+        "主婦・主夫積極採用",
+        "主婦主夫OK",
+        "主婦主夫大歓迎",
+        "主婦主夫積極採用",
+        "主婦（夫）OK",
+        "主婦（夫）大歓迎",
+        "主婦（夫）積極採用",
+        "主ふOK",
+        "主ふ大歓迎",
+        "主ふ積極採用",
+        "主婦／主夫OK",
+        "主婦／主夫大歓迎",
+        "主婦／主夫積極採用"
       ],
       "alias_loose": [
         "主婦歓迎",
-        "主夫歓迎"
+        "主夫歓迎",
+        "主婦・主夫可",
+        "主婦主夫可",
+        "主婦（夫）可",
+        "主ふ可",
+        "主婦／主夫可",
+        "主婦OK",
+        "主婦大歓迎",
+        "主婦積極採用",
+        "主婦可",
+        "主夫OK",
+        "主夫大歓迎",
+        "主夫積極採用",
+        "主夫可"
       ],
       "difficulty": "中",
       "exclude_terms": [],
@@ -21234,8 +21373,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "大学中退者歓迎",
       "canonical": "大学中退者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "大学中退者OK",
+        "大学中退者大歓迎",
+        "大学中退者積極採用"
+      ],
+      "alias_loose": [
+        "大学中退者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21247,8 +21392,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "子育て世代歓迎",
       "canonical": "子育て世代歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "子育て世代OK",
+        "子育て世代大歓迎",
+        "子育て世代積極採用"
+      ],
+      "alias_loose": [
+        "子育て世代可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21276,8 +21427,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "文系歓迎",
       "canonical": "文系歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "文系OK",
+        "文系大歓迎",
+        "文系積極採用"
+      ],
+      "alias_loose": [
+        "文系可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21290,9 +21447,13 @@
       "job_tag": "新卒歓迎",
       "canonical": "新卒歓迎",
       "alias_strict": [
-        "新卒OK"
+        "新卒OK",
+        "新卒大歓迎",
+        "新卒積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "新卒可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21305,9 +21466,13 @@
       "job_tag": "既卒歓迎",
       "canonical": "既卒歓迎",
       "alias_strict": [
-        "既卒OK"
+        "既卒OK",
+        "既卒大歓迎",
+        "既卒積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "既卒可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21319,8 +21484,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "昼職転職歓迎",
       "canonical": "昼職転職歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "昼職転職OK",
+        "昼職転職大歓迎",
+        "昼職転職積極採用"
+      ],
+      "alias_loose": [
+        "昼職転職可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21332,8 +21503,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "有資格者歓迎",
       "canonical": "有資格者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "有資格者OK",
+        "有資格者大歓迎",
+        "有資格者積極採用"
+      ],
+      "alias_loose": [
+        "有資格者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21348,9 +21525,16 @@
       "alias_strict": [
         "未経験歓迎",
         "未経験OK",
-        "未経験可"
+        "未経験可",
+        "未経験者OK",
+        "未経験者大歓迎",
+        "未経験者積極採用",
+        "未経験大歓迎",
+        "未経験積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "未経験者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [
         "未経験不可",
@@ -21368,9 +21552,17 @@
       "canonical": "業界未経験者歓迎",
       "alias_strict": [
         "業界未経験歓迎",
-        "業界未経験OK"
+        "業界未経験OK",
+        "業界未経験者OK",
+        "業界未経験者大歓迎",
+        "業界未経験者積極採用",
+        "業界未経験大歓迎",
+        "業界未経験積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "業界未経験者可",
+        "業界未経験可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21382,8 +21574,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "海外勤務経験者歓迎",
       "canonical": "海外勤務経験者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "海外勤務経験者OK",
+        "海外勤務経験者大歓迎",
+        "海外勤務経験者積極採用"
+      ],
+      "alias_loose": [
+        "海外勤務経験者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21395,8 +21593,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "海外生活経験者歓迎",
       "canonical": "海外生活経験者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "海外生活経験者OK",
+        "海外生活経験者大歓迎",
+        "海外生活経験者積極採用"
+      ],
+      "alias_loose": [
+        "海外生活経験者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21408,8 +21612,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "理系歓迎",
       "canonical": "理系歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "理系OK",
+        "理系大歓迎",
+        "理系積極採用"
+      ],
+      "alias_loose": [
+        "理系可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21421,8 +21631,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "男女歓迎",
       "canonical": "男女歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "男女OK",
+        "男女大歓迎",
+        "男女積極採用"
+      ],
+      "alias_loose": [
+        "男女可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21434,8 +21650,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "留学経験者歓迎",
       "canonical": "留学経験者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "留学経験者OK",
+        "留学経験者大歓迎",
+        "留学経験者積極採用"
+      ],
+      "alias_loose": [
+        "留学経験者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21447,8 +21669,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "異業種歓迎",
       "canonical": "異業種歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "異業種OK",
+        "異業種大歓迎",
+        "異業種積極採用"
+      ],
+      "alias_loose": [
+        "異業種可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21461,9 +21689,13 @@
       "job_tag": "第二新卒歓迎",
       "canonical": "第二新卒歓迎",
       "alias_strict": [
-        "第二新卒OK"
+        "第二新卒OK",
+        "第二新卒大歓迎",
+        "第二新卒積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "第二新卒可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21475,8 +21707,34 @@
       "middle_category": "応募歓迎",
       "job_tag": "管理職・マネジメント経験歓迎",
       "canonical": "管理職・マネジメント経験歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "管理職／マネジメント経験歓迎",
+        "管理職経験・マネジメント経験歓迎",
+        "管理職・マネジメント経験OK",
+        "管理職・マネジメント経験大歓迎",
+        "管理職・マネジメント経験積極採用",
+        "管理職／マネジメント経験OK",
+        "管理職／マネジメント経験大歓迎",
+        "管理職／マネジメント経験積極採用",
+        "管理職経験・マネジメント経験OK",
+        "管理職経験・マネジメント経験大歓迎",
+        "管理職経験・マネジメント経験積極採用"
+      ],
+      "alias_loose": [
+        "マネジメント経験歓迎",
+        "管理職経験歓迎",
+        "管理職・マネジメント経験可",
+        "管理職／マネジメント経験可",
+        "管理職経験・マネジメント経験可",
+        "マネジメント経験OK",
+        "マネジメント経験大歓迎",
+        "マネジメント経験積極採用",
+        "マネジメント経験可",
+        "管理職経験OK",
+        "管理職経験大歓迎",
+        "管理職経験積極採用",
+        "管理職経験可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21488,8 +21746,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "経験浅め歓迎",
       "canonical": "経験浅め歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "経験浅めOK",
+        "経験浅め大歓迎",
+        "経験浅め積極採用"
+      ],
+      "alias_loose": [
+        "経験浅め可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21501,8 +21765,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "経験者歓迎",
       "canonical": "経験者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "経験者OK",
+        "経験者大歓迎",
+        "経験者積極採用"
+      ],
+      "alias_loose": [
+        "経験者可"
+      ],
       "difficulty": "高",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21516,9 +21786,22 @@
       "canonical": "車両持ち込み歓迎",
       "alias_strict": [
         "車両持込み歓迎",
-        "車両持込歓迎"
+        "車両持込歓迎",
+        "車両持ち込みOK",
+        "車両持ち込み大歓迎",
+        "車両持ち込み積極採用",
+        "車両持込みOK",
+        "車両持込み大歓迎",
+        "車両持込み積極採用",
+        "車両持込OK",
+        "車両持込大歓迎",
+        "車両持込積極採用"
       ],
-      "alias_loose": [],
+      "alias_loose": [
+        "車両持ち込み可",
+        "車両持込み可",
+        "車両持込可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21530,8 +21813,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "長期歓迎",
       "canonical": "長期歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "長期OK",
+        "長期大歓迎",
+        "長期積極採用"
+      ],
+      "alias_loose": [
+        "長期可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21543,8 +21832,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "障がい者歓迎",
       "canonical": "障がい者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "障がい者OK",
+        "障がい者大歓迎",
+        "障がい者積極採用"
+      ],
+      "alias_loose": [
+        "障がい者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21556,8 +21851,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "高卒歓迎",
       "canonical": "高卒歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "高卒OK",
+        "高卒大歓迎",
+        "高卒積極採用"
+      ],
+      "alias_loose": [
+        "高卒可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -21569,8 +21870,14 @@
       "middle_category": "応募歓迎",
       "job_tag": "高校中退者歓迎",
       "canonical": "高校中退者歓迎",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "高校中退者OK",
+        "高校中退者大歓迎",
+        "高校中退者積極採用"
+      ],
+      "alias_loose": [
+        "高校中退者可"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
