@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-10-03 - Matcher validation fixes
+
+- 判定テスターと回帰テストを追加。
+- `UIターン歓迎` がITスキル `UI` に誤HITすることを回帰テストで検出。
+- `UI` タグの局所除外語へ `UIターン` を追加。
+- `UIターン歓迎` はU・Iターン歓迎として判定し、ITスキルUIは抑止する。
+
 ## 2026-10-02 - Alias and global matcher refinements
 
 ### Alias additions
