@@ -9,8 +9,8 @@
   },
   "stats": {
     "tag_count": 1617,
-    "strict_alias_coverage": 625,
-    "loose_alias_coverage": 44,
+    "strict_alias_coverage": 643,
+    "loose_alias_coverage": 47,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
       "token_exact": 116,
@@ -6033,7 +6033,10 @@
       "middle_category": "営業・販売スキル",
       "job_tag": "スマホ販売",
       "canonical": "スマホ販売",
-      "alias_strict": [],
+      "alias_strict": [
+        "携帯販売",
+        "携帯電話販売"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -6885,7 +6888,10 @@
       "middle_category": "建設・製造スキル",
       "job_tag": "組立",
       "canonical": "組立",
-      "alias_strict": [],
+      "alias_strict": [
+        "組み立て",
+        "組立て"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -7316,7 +7322,9 @@
       "middle_category": "事務・カスタマーサービススキル",
       "job_tag": "PCスキル",
       "canonical": "PCスキル",
-      "alias_strict": [],
+      "alias_strict": [
+        "パソコンスキル"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [
@@ -7399,7 +7407,11 @@
       "job_tag": "タイピング",
       "canonical": "タイピング",
       "alias_strict": [],
-      "alias_loose": [],
+      "alias_loose": [
+        "PC入力",
+        "パソコン入力",
+        "キーボード入力"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -7476,7 +7488,9 @@
       "middle_category": "事務・カスタマーサービススキル",
       "job_tag": "ブラインドタッチ",
       "canonical": "ブラインドタッチ",
-      "alias_strict": [],
+      "alias_strict": [
+        "タッチタイピング"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -8245,7 +8259,10 @@
       "middle_category": "シフト・スケジュール",
       "job_tag": "1ヶ月単位の変形労働時間制",
       "canonical": "1ヶ月単位の変形労働時間制",
-      "alias_strict": [],
+      "alias_strict": [
+        "1ヵ月単位の変形労働時間制",
+        "1か月単位の変形労働時間制"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -8576,7 +8593,9 @@
       "canonical": "夜勤なし",
       "alias_strict": [
         "夜勤無し",
-        "夜勤ナシ"
+        "夜勤ナシ",
+        "日勤のみ",
+        "日勤専従"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -9382,7 +9401,9 @@
       "middle_category": "応募詳細",
       "job_tag": "人柄重視採用",
       "canonical": "人柄重視採用",
-      "alias_strict": [],
+      "alias_strict": [
+        "人柄重視"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9469,7 +9490,11 @@
       "middle_category": "応募詳細",
       "job_tag": "増員募集",
       "canonical": "増員募集",
-      "alias_strict": [],
+      "alias_strict": [
+        "増員のため募集",
+        "増員のための募集",
+        "増員につき募集"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9511,7 +9536,11 @@
       "middle_category": "応募詳細",
       "job_tag": "欠員補充",
       "canonical": "欠員補充",
-      "alias_strict": [],
+      "alias_strict": [
+        "欠員のため募集",
+        "欠員募集",
+        "欠員補充のため募集"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9659,7 +9688,9 @@
       "middle_category": "応募詳細",
       "job_tag": "電話で応募・問い合わせ",
       "canonical": "電話で応募・問い合わせ",
-      "alias_strict": [],
+      "alias_strict": [
+        "電話で応募・問合せ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -9844,7 +9875,10 @@
       "middle_category": "契約形態",
       "job_tag": "短期（1ヵ月以内）",
       "canonical": "短期（1ヵ月以内）",
-      "alias_strict": [],
+      "alias_strict": [
+        "短期（1ヶ月以内）",
+        "短期（1か月以内）"
+      ],
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
@@ -9857,8 +9891,17 @@
       "middle_category": "契約形態",
       "job_tag": "短期（3ヵ月以内）",
       "canonical": "短期（3ヵ月以内）",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "短期（3ヶ月以内）",
+        "短期3ヶ月以内",
+        "3ヶ月以内の短期",
+        "短期（3か月以内）",
+        "3か月以内の短期"
+      ],
+      "alias_loose": [
+        "短期（3ヶ月）",
+        "短期3ヶ月"
+      ],
       "difficulty": "中",
       "exclude_terms": [],
       "match_policy": "normal",
@@ -10214,8 +10257,14 @@
       "middle_category": "就業場所",
       "job_tag": "クルマ販売店",
       "canonical": "クルマ販売店",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "車販売店",
+        "カーディーラー",
+        "自動車ディーラー"
+      ],
+      "alias_loose": [
+        "ディーラー"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -12887,7 +12936,8 @@
       "job_tag": "入学・進学祝金あり",
       "canonical": "入学・進学祝金あり",
       "alias_strict": [
-        "入学・進学祝金有り"
+        "入学・進学祝金有り",
+        "入学・進学祝い金あり"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -12951,7 +13001,10 @@
       "middle_category": "待遇・福利厚生",
       "job_tag": "出張代支給",
       "canonical": "出張代支給",
-      "alias_strict": [],
+      "alias_strict": [
+        "出張費支給",
+        "出張旅費支給"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -12965,7 +13018,8 @@
       "job_tag": "出産祝い金あり",
       "canonical": "出産祝い金あり",
       "alias_strict": [
-        "出産祝い金有り"
+        "出産祝い金有り",
+        "出産祝金あり"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -13187,7 +13241,9 @@
       "job_tag": "契約更新あり",
       "canonical": "契約更新あり",
       "alias_strict": [
-        "契約更新有り"
+        "契約更新有り",
+        "原則契約更新",
+        "契約更新原則あり"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -13290,7 +13346,10 @@
       "job_tag": "家庭都合休OK",
       "canonical": "家庭都合休OK",
       "alias_strict": [
-        "家庭都合休可"
+        "家庭都合休可",
+        "家庭都合休みOK",
+        "家庭都合休み可",
+        "家庭の都合で休みOK"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -13349,7 +13408,11 @@
       "job_tag": "寮・社宅あり",
       "canonical": "寮・社宅あり",
       "alias_strict": [
-        "寮・社宅有り"
+        "寮・社宅有り",
+        "寮あり",
+        "寮有り",
+        "社宅あり",
+        "社宅有り"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -13443,7 +13506,11 @@
       "job_tag": "引っ越し補助あり",
       "canonical": "引っ越し補助あり",
       "alias_strict": [
-        "引っ越し補助有り"
+        "引っ越し補助有り",
+        "引越し補助あり",
+        "引越し補助有り",
+        "引越補助あり",
+        "引越補助有り"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -13565,7 +13632,11 @@
       "middle_category": "待遇・福利厚生",
       "job_tag": "携帯代支給",
       "canonical": "携帯代支給",
-      "alias_strict": [],
+      "alias_strict": [
+        "スマホ代支給",
+        "携帯電話代支給",
+        "スマートフォン代支給"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -13578,7 +13649,11 @@
       "middle_category": "待遇・福利厚生",
       "job_tag": "携帯貸与",
       "canonical": "携帯貸与",
-      "alias_strict": [],
+      "alias_strict": [
+        "スマホ貸与",
+        "携帯電話貸与",
+        "スマートフォン貸与"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -13903,7 +13978,11 @@
       "job_tag": "研修あり",
       "canonical": "研修あり",
       "alias_strict": [
-        "研修有り"
+        "研修有り",
+        "研修充実",
+        "研修制度あり",
+        "研修制度有り",
+        "研修制度充実"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -14009,7 +14088,11 @@
       "job_tag": "社割あり",
       "canonical": "社割あり",
       "alias_strict": [
-        "社割有り"
+        "社割有り",
+        "社員割引あり",
+        "社員割引有り",
+        "従業員割引あり",
+        "従業員割引有り"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -14131,7 +14214,8 @@
       "job_tag": "結婚祝い金あり",
       "canonical": "結婚祝い金あり",
       "alias_strict": [
-        "結婚祝い金有り"
+        "結婚祝い金有り",
+        "結婚祝金あり"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -14475,7 +14559,8 @@
       "job_tag": "食費補助あり",
       "canonical": "食費補助あり",
       "alias_strict": [
-        "食費補助有り"
+        "食費補助有り",
+        "食事代補助"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -14534,7 +14619,11 @@
       "middle_category": "待遇・福利厚生",
       "job_tag": "高速代支給",
       "canonical": "高速代支給",
-      "alias_strict": [],
+      "alias_strict": [
+        "高速道路代支給",
+        "高速料金支給",
+        "高速道路料金支給"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -14611,7 +14700,11 @@
       "job_tag": "入社祝い金あり",
       "canonical": "入社祝い金あり",
       "alias_strict": [
-        "入社祝い金有り"
+        "入社祝い金有り",
+        "入社祝金あり",
+        "入社祝金有り",
+        "入社祝い金",
+        "入社祝金"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -14871,7 +14964,10 @@
       "middle_category": "賃金",
       "job_tag": "振込",
       "canonical": "振込",
-      "alias_strict": [],
+      "alias_strict": [
+        "振り込み",
+        "振込み"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -15309,7 +15405,9 @@
       "canonical": "車両持ち込み手当あり",
       "alias_strict": [
         "車両持ち込み手当有り",
-        "車両持ち込み手当"
+        "車両持ち込み手当",
+        "車両持込み手当あり",
+        "車両持込手当あり"
       ],
       "alias_loose": [],
       "difficulty": "中",
@@ -16174,7 +16272,9 @@
       "job_tag": "低圧電気取扱者特別教育修了",
       "canonical": "低圧電気取扱者特別教育修了",
       "alias_strict": [
-        "低圧電気取扱者特別教育"
+        "低圧電気取扱者特別教育",
+        "低圧電気取り扱い者特別教育修了",
+        "低圧電気取扱い者特別教育修了"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -16464,7 +16564,9 @@
       "job_tag": "危険物取扱者乙種第4類免許",
       "canonical": "危険物取扱者乙種第4類免許",
       "alias_strict": [
-        "危険物取扱者乙種第4類"
+        "危険物取扱者乙種第4類",
+        "危険物取り扱い者乙種第4類免許",
+        "危険物取扱い者乙種第4類免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -16479,7 +16581,9 @@
       "job_tag": "危険物取扱者甲種免許",
       "canonical": "危険物取扱者甲種免許",
       "alias_strict": [
-        "危険物取扱者甲種"
+        "危険物取扱者甲種",
+        "危険物取り扱い者甲種免許",
+        "危険物取扱い者甲種免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -16539,7 +16643,9 @@
       "job_tag": "国内旅行業務取扱管理者免許",
       "canonical": "国内旅行業務取扱管理者免許",
       "alias_strict": [
-        "国内旅行業務取扱管理者"
+        "国内旅行業務取扱管理者",
+        "国内旅行業務取り扱い管理者免許",
+        "国内旅行業務取扱い管理者免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -16842,7 +16948,9 @@
       "job_tag": "建築物等の鉄骨の組立て等作業主任者技能講習修了",
       "canonical": "建築物等の鉄骨の組立て等作業主任者技能講習修了",
       "alias_strict": [
-        "建築物等の鉄骨の組立て等作業主任者技能講習"
+        "建築物等の鉄骨の組立て等作業主任者技能講習",
+        "建築物等の鉄骨の組み立て等作業主任者技能講習修了",
+        "建築物等の鉄骨の組立等作業主任者技能講習修了"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -17182,7 +17290,9 @@
       "job_tag": "毒物劇物取扱責任者免許",
       "canonical": "毒物劇物取扱責任者免許",
       "alias_strict": [
-        "毒物劇物取扱責任者"
+        "毒物劇物取扱責任者",
+        "毒物劇物取り扱い責任者免許",
+        "毒物劇物取扱い責任者免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -17699,7 +17809,9 @@
       "job_tag": "第1種放射線取扱主任者免許",
       "canonical": "第1種放射線取扱主任者免許",
       "alias_strict": [
-        "第1種放射線取扱主任者"
+        "第1種放射線取扱主任者",
+        "第1種放射線取り扱い主任者免許",
+        "第1種放射線取扱い主任者免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -18278,7 +18390,9 @@
       "job_tag": "貸金業務取扱主任者免許",
       "canonical": "貸金業務取扱主任者免許",
       "alias_strict": [
-        "貸金業務取扱主任者"
+        "貸金業務取扱主任者",
+        "貸金業務取り扱い主任者免許",
+        "貸金業務取扱い主任者免許"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -18308,7 +18422,9 @@
       "job_tag": "足場の組立て等作業主任者技能講習修了",
       "canonical": "足場の組立て等作業主任者技能講習修了",
       "alias_strict": [
-        "足場の組立て等作業主任者技能講習"
+        "足場の組立て等作業主任者技能講習",
+        "足場の組み立て等作業主任者技能講習修了",
+        "足場の組立等作業主任者技能講習修了"
       ],
       "alias_loose": [],
       "difficulty": "低",
@@ -21398,7 +21514,10 @@
       "middle_category": "応募歓迎",
       "job_tag": "車両持ち込み歓迎",
       "canonical": "車両持ち込み歓迎",
-      "alias_strict": [],
+      "alias_strict": [
+        "車両持込み歓迎",
+        "車両持込歓迎"
+      ],
       "alias_loose": [],
       "difficulty": "中",
       "exclude_terms": [],
