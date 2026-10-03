@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 2026-10-04 - Welcome alias system
+
+応募歓迎34タグの語尾・複合表記を体系化。
+
+### strict
+
+- 歓迎 → OK
+- 歓迎 → 大歓迎
+- 歓迎 → 積極採用
+- strictの歓迎表現にも同じ派生を適用
+
+### loose
+
+- 歓迎 → 可
+- looseの歓迎表現から派生したOK / 大歓迎 / 積極採用 / 可はloose維持
+- `可` の `も可` variantをloose aliasにも適用
+
+### Composite wording
+
+- シングルマザー・ファーザー歓迎
+- 管理職・マネジメント経験歓迎
+- 主婦・主夫歓迎
+
+について、区切り・括弧表記と片側表現をstrict / looseへ整理。
+
+### Not expanded
+
+`活躍中` / `在籍` は歓迎と同一視せず、横断alias化していない。独立canonicalがある場合はそちらを優先する。
+
+### Snapshot
+
+- strict aliasあり: 667
+- loose aliasあり: 80
+- alias衝突: 0
+
 ## 2026-10-03 - Alias orthography expansion
 
 ユーザー提供候補と全1,617タグの表記揺れ再走査を反映。
