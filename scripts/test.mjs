@@ -20,6 +20,7 @@ for (const tc of cases) {
   for (const c of tc.review || []) if (!has(result.review, c)) errors.push("要確認にならない: " + c);
   for (const c of tc.absent || []) if (has(result.results, c)) errors.push("誤HIT: " + c);
   for (const c of tc.notMatched || []) if (has(result.matched, c)) errors.push("誤確定: " + c);
+  for (const c of tc.suppressed || []) if (!has(result.suppressed, c)) errors.push("抑止されない: " + c);
 
   if (errors.length === 0) {
     passed++;
