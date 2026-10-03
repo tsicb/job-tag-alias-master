@@ -195,13 +195,104 @@ function hasLocationContext(text, hit, term) {
   return relation.test(local);
 }
 
-function classifyContext(tag, text, hit, term) {
+function normalizeFieldName(value) {
+  return String(value == null ? "" : value).trim();
+}
+
+function locationFieldGroup(fieldName, defaults) {
+  if (!fieldName) return "unknown";
+  const groups = defaults && defaults.location_matching && defaults.location_matching.field_groups;
+  if (!groups) return "unknown";
+  for (const group of Object.keys(groups)) {
+    if ((groups[group] || []).includes(fieldName)) return group;
+  }
+  return "unknown";
+}
+
+function fieldInfoForHit(fieldRanges, hit, defaults) {
+  if (!fieldRanges || !fieldRanges.length) return { name:null, group:"unknown" };
+  const range = fieldRanges.find(function(r) {
+    return hit.start >= r.start && hit.end <= r.end;
+  });
+  if (!range) return { name:null, group:"unknown" };
+  return { name:range.name, group:locationFieldGroup(range.name, defaults) };
+}
+
+function hasLocationMobilityContext(text, hit) {
+  const after = text.slice(hit.end, Math.min(text.length, hit.end + 40));
+  if (/^\s*(?:から|より)[^。\n]{0,28}(?:運ぶ|運び|運搬|配送|配達|集荷|出発|積み込|積込)/u.test(after)) return true;
+  if (/^\s*(?:へ|に)[^。\n]{0,28}(?:配送|配達|納品|集荷|訪問|送迎|戻る|戻り|帰る|帰着)/u.test(after)) return true;
+  if (/^\s*を[^。\n]{0,22}(?:訪問|巡回)/u.test(after)) return true;
+  return false;
+}
+
+function hasPositiveLocationContext(text, hit) {
+  const after = text.slice(hit.end, Math.min(text.length, hit.end + 30));
+  if (/^\s*(?:内(?:で|にて)|で|にて)/u.test(after)) return true;
+  if (/^\s*(?:で|に|へ)?(?:勤務|就業|配属)/u.test(after)) return true;
+  if (/^\s*(?:勤務|就業)(?:です|となります|する|します|予定|$)/u.test(after)) return true;
+  return false;
+}
+
+function seaPatternMatches(text) {
+  const patterns = [
+    /海の家/gu,
+    /海辺/gu,
+    /海沿い/gu,
+    /海(?:で|にて)(?:の)?(?:勤務|仕事|作業|業務)?/gu,
+    /ビーチ(?:スタッフ|業務|勤務|施設|リゾート)?/gu,
+    /マリン(?:レジャー|スポーツ|スタッフ|業務|施設)/gu,
+    /海上(?:作業|業務|勤務|スタッフ)/gu
+  ];
+  const hits = [];
+  for (const re of patterns) {
+    for (const m of text.matchAll(re)) {
+      hits.push({ start:m.index, end:m.index + m[0].length, text:m[0] });
+    }
+  }
+  return hits;
+}
+
+function classifyLocationContext(tag, text, hit, term, fieldInfo) {
+  const group = fieldInfo && fieldInfo.group ? fieldInfo.group : "unknown";
+  const mobility = hasLocationMobilityContext(text, hit);
+  const positive = hasPositiveLocationContext(text, hit);
+
+  if (group === "primary" || group === "identity") {
+    return { decision:"matched", reason:"就業場所を強く示すフィールドで一致" };
+  }
+
+  if (group === "weak") {
+    return { decision:"review", reason:"住所・交通・選考等の弱いフィールドでの一致" };
+  }
+
+  if (mobility) {
+    return { decision:"review", reason:"配送・納品・訪問・移動先等の可能性があるため要確認" };
+  }
+
+  if (group === "description") {
+    if (positive) return { decision:"matched", reason:"仕事内容内の就業場所文脈を確認" };
+    if (tag.difficulty === "低") return { decision:"matched", reason:"仕事内容内で明示的な施設・業態名を確認" };
+    return { decision:"review", reason:"仕事内容内の場所名だが就業関係の確認が必要" };
+  }
+
+  if (group === "support") {
+    if (positive) return { decision:"matched", reason:"補助フィールド内で就業場所文脈を確認" };
+    return { decision:"review", reason:"補助フィールド内の場所名のため要確認" };
+  }
+
+  if (hasLocationContext(text, hit, term) || positive) {
+    return { decision:"matched", reason:"就業場所を示す文脈を確認" };
+  }
+  return { decision:"review", reason:"施設・場所名のみでは就業関係の確認が必要" };
+}
+
+function classifyContext(tag, text, hit, term, fieldInfo) {
   const c = normalizeText(tag.canonical);
   const local = contextSnippet(text, hit.start, hit.end, 42);
 
   if (tag.middle_category === "就業場所") {
-    if (hasLocationContext(text, hit, term)) return { decision: "matched", reason: "就業場所を示す文脈を確認" };
-    return { decision: "review", reason: "施設・場所名のみでは就業場所と確定できない" };
+    return classifyLocationContext(tag, text, hit, term, fieldInfo);
   }
   if (c === "採用") {
     if (/(採用業務|採用活動|採用担当|人材採用|新卒採用|中途採用|採用実務)/u.test(local)) return { decision: "matched", reason: "採用業務の文脈を確認" };
@@ -318,8 +409,7 @@ function buildTermSpecs(tag) {
   });
 }
 
-export function analyzeText(sourceText, master, defaults) {
-  const text = normalizeText(sourceText);
+function analyzeNormalized(text, master, defaults, fieldRanges) {
   const results = [];
 
   for (const tag of master.tags || []) {
@@ -332,7 +422,21 @@ export function analyzeText(sourceText, master, defaults) {
       }
     }
 
-    for (const spec of buildTermSpecs(tag)) {
+    if (tag.middle_category === "就業場所" && normalizeText(tag.canonical) === "海") {
+      for (const hit of seaPatternMatches(text)) {
+        const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
+        let decision = "matched";
+        let reason = "海が仕事環境として意味を持つ表現を確認";
+        if (fieldInfo.group === "weak") {
+          decision = "review";
+          reason = "住所・交通等の弱いフィールド内の海関連表現";
+        } else if (fieldInfo.group === "support") {
+          decision = "review";
+          reason = "補助フィールド内の海関連表現";
+        }
+        evidences.push({ decision:decision, source:"semantic_pattern", term:tag.canonical, hitText:hit.text, start:hit.start, end:hit.end, reason:reason, fieldName:fieldInfo.name, fieldGroup:fieldInfo.group });
+      }
+    } else for (const spec of buildTermSpecs(tag)) {
       const normalizedTerm = normalizeText(spec.term);
       const ascii = isAsciiOnly(normalizedTerm);
       const tokenBoundary = ascii && (tag.match_policy === "token_exact" || charLength(normalizedTerm) <= 3);
@@ -358,8 +462,9 @@ export function analyzeText(sourceText, master, defaults) {
           continue;
         }
         if (tag.match_policy === "context") {
-          const ctx = classifyContext(tag, text, hit, spec.term);
-          evidences.push({ decision:ctx.decision, source:spec.source, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:ctx.reason });
+          const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
+          const ctx = classifyContext(tag, text, hit, spec.term, fieldInfo);
+          evidences.push({ decision:ctx.decision, source:spec.source, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:ctx.reason, fieldName:fieldInfo.name, fieldGroup:fieldInfo.group });
           continue;
         }
         if (tag.match_policy === "pattern" && spec.source === "canonical") {
@@ -402,6 +507,8 @@ export function analyzeText(sourceText, master, defaults) {
       hit_source:primary.source,
       reason:primary.reason,
       context:contextSnippet(text, primary.start, primary.end, 50),
+      field_name:primary.fieldName || null,
+      field_group:primary.fieldGroup || null,
       evidences:evidences
     });
   }
@@ -422,6 +529,36 @@ export function analyzeText(sourceText, master, defaults) {
     confirmedCodes:results.filter(function(r){return r.decision==="matched";}).map(function(r){return r.tag_code;}),
     reviewCodes:results.filter(function(r){return r.decision==="review";}).map(function(r){return r.tag_code;})
   };
+}
+
+
+export function analyzeText(sourceText, master, defaults) {
+  return analyzeNormalized(normalizeText(sourceText), master, defaults, null);
+}
+
+export function analyzeFields(fields, master, defaults) {
+  const chunks = [];
+  const ranges = [];
+  let cursor = 0;
+
+  for (const field of fields || []) {
+    const value = normalizeText(field && field.value);
+    if (!value) continue;
+    if (chunks.length) {
+      chunks.push("\n");
+      cursor += 1;
+    }
+    const start = cursor;
+    chunks.push(value);
+    cursor += value.length;
+    ranges.push({
+      name: normalizeFieldName(field && field.name),
+      start:start,
+      end:cursor
+    });
+  }
+
+  return analyzeNormalized(chunks.join(""), master, defaults, ranges);
 }
 
 export async function analyze(sourceText) {
