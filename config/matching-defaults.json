@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "normalization": {
     "unicode": "NFKC",
     "ascii_case_insensitive": true
@@ -89,6 +89,74 @@
           "主婦応募可"
         ]
       }
+    }
+  },
+  "presence_absence_suffix_variants": {
+    "enabled": true,
+    "confidence_rule": "Generated variants keep the source confidence.",
+    "negative": {
+      "base_suffixes": [
+        "なし",
+        "無し",
+        "ナシ"
+      ],
+      "variants": [
+        "なし",
+        "無し",
+        "ナシ",
+        "無"
+      ],
+      "short_kanji_boundary_rule": "The single-kanji 無 variant matches only when immediately followed by end-of-text, whitespace, or punctuation. This prevents false positives such as 駐車場無料."
+    },
+    "positive": {
+      "base_suffixes": [
+        "あり",
+        "有り",
+        "アリ"
+      ],
+      "variants": [
+        "あり",
+        "有り",
+        "アリ",
+        "有"
+      ],
+      "short_kanji_boundary_rule": "The single-kanji 有 variant matches only when immediately followed by end-of-text, whitespace, or punctuation. This prevents false positives such as 残業有無."
+    },
+    "examples": {
+      "match": [
+        "賞与アリ",
+        "昇給有",
+        "残業ナシ",
+        "転勤無"
+      ],
+      "no_match": [
+        "残業有無",
+        "駐車場無料"
+      ]
+    }
+  },
+  "activity_variants": {
+    "enabled": true,
+    "scope": "Tags whose canonical ends with 活躍中. Apply to canonical and aliases that themselves end with 活躍中.",
+    "strict_suffix_change": "活躍中 -> 活躍, preserving the source confidence.",
+    "loose_suffix_change": "活躍中 -> 在籍, always review.",
+    "not_enabled": [
+      "多数",
+      "多数在籍",
+      "スタッフ多数"
+    ],
+    "examples": {
+      "matched": [
+        "女性活躍",
+        "外国人スタッフ活躍"
+      ],
+      "review": [
+        "女性在籍",
+        "外国人スタッフ在籍"
+      ],
+      "no_automatic_conversion": [
+        "女性多数"
+      ]
     }
   }
 }
