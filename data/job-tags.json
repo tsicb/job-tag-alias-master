@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3.0",
-  "snapshot_date": "2026-10-02",
+  "snapshot_date": "2026-10-03",
   "source": {
     "spreadsheet_title": "求人タグ_aliasマスタ_第3版",
     "spreadsheet_id": "1HJJ4cD9hiKuW7qZr9SDOb4miooZnmq7rFIddwGSOqR0",
@@ -256,7 +256,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "UIターン"
+      ],
       "match_policy": "token_exact",
       "pattern_rule": null
     },
