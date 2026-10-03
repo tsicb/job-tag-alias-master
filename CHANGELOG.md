@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 2026-10-04 - Presence/absence and activity variants
+
+語尾表記の共通判定を追加。
+
+### Presence / absence
+
+- あり / 有り / アリ
+- なし / 無し / ナシ
+- 有 / 無（安全な後続境界がある場合のみ）
+
+source confidenceを維持して動的派生する。
+
+`残業有無` や `駐車場無料` の包含誤爆を防ぐ境界判定を追加。
+
+### Activity
+
+canonicalが `活躍中` で終わるタグについて:
+
+- X活躍 → source confidenceを維持
+- X在籍 → loose / review
+- X多数 → 未採用
+
+alias列の大量追加は行わずmatcher/configで管理。
+
 ## 2026-10-04 - Applicant wording variants
 
 求職者属性・経験条件の `応募歓迎 / 応募OK / 応募可 / 応募可能` 表現を共通matcher ruleへ追加。
