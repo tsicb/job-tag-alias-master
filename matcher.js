@@ -44,8 +44,15 @@ function hasAsciiTokenBoundary(text, start, length) {
   return !isAsciiTokenChar(before) && !isAsciiTokenChar(after);
 }
 
+function hasSemanticSuffixBoundary(text, start, length) {
+  const after = start + length < text.length ? text[start + length] : "";
+  if (!after) return true;
+  return /[\s、。・,.;:：；!！?？/／\\|｜()（）\[\]【】「」『』<>＜＞=＝+＋\-—–]/u.test(after);
+}
+
 function findAll(text, rawNeedle, options) {
   const tokenBoundary = !!(options && options.tokenBoundary);
+  const semanticSuffixBoundary = !!(options && options.semanticSuffixBoundary);
   const needle = normalizeText(rawNeedle);
   if (!needle) return [];
   const hits = [];
@@ -53,7 +60,9 @@ function findAll(text, rawNeedle, options) {
   while (from <= text.length - needle.length) {
     const index = text.indexOf(needle, from);
     if (index < 0) break;
-    if (!tokenBoundary || hasAsciiTokenBoundary(text, index, needle.length)) {
+    const tokenOk = !tokenBoundary || hasAsciiTokenBoundary(text, index, needle.length);
+    const suffixOk = !semanticSuffixBoundary || hasSemanticSuffixBoundary(text, index, needle.length);
+    if (tokenOk && suffixOk) {
       hits.push({ start: index, end: index + needle.length, text: text.slice(index, index + needle.length) });
     }
     from = index + Math.max(1, needle.length);
@@ -67,6 +76,59 @@ function addAllowanceVariants(term) {
   if (term.endsWith("可")) out.push(term.slice(0, -1) + "も可");
   else if (/OK$/i.test(term)) out.push(term.slice(0, -2) + "も" + term.slice(-2));
   return Array.from(new Set(out));
+}
+
+function addPresenceAbsenceVariants(spec) {
+  const term = spec.term;
+  const out = [];
+
+  function pushVariant(nextTerm, shortKanji) {
+    if (!nextTerm || nextTerm === term) return;
+    out.push(Object.assign({}, spec, {
+      term: nextTerm,
+      generated: true,
+      generatedType: "presence_absence",
+      semanticSuffixBoundary: !!shortKanji
+    }));
+  }
+
+  if (term.endsWith("なし") || term.endsWith("無し") || term.endsWith("ナシ")) {
+    const stem = term.slice(0, -2);
+    pushVariant(stem + "なし", false);
+    pushVariant(stem + "無し", false);
+    pushVariant(stem + "ナシ", false);
+    pushVariant(stem + "無", true);
+  }
+
+  if (term.endsWith("あり") || term.endsWith("有り") || term.endsWith("アリ")) {
+    const stem = term.slice(0, -2);
+    pushVariant(stem + "あり", false);
+    pushVariant(stem + "有り", false);
+    pushVariant(stem + "アリ", false);
+    pushVariant(stem + "有", true);
+  }
+
+  return out;
+}
+
+function addActivityVariants(tag, spec) {
+  if (!tag.canonical.endsWith("活躍中") || !spec.term.endsWith("活躍中")) return [];
+
+  const stem = spec.term.slice(0, -3);
+  return [
+    Object.assign({}, spec, {
+      term: stem + "活躍",
+      generated: true,
+      generatedType: "activity",
+      loose: !!spec.loose
+    }),
+    Object.assign({}, spec, {
+      term: stem + "在籍",
+      generated: true,
+      generatedType: "presence_review",
+      loose: true
+    })
+  ];
 }
 
 function isBaseWelcomeTerm(term) {
@@ -234,6 +296,14 @@ function buildTermSpecs(tag) {
       }));
     }
 
+    for (const presenceSpec of addPresenceAbsenceVariants(spec)) {
+      expanded.push(presenceSpec);
+    }
+
+    for (const activitySpec of addActivityVariants(tag, spec)) {
+      expanded.push(activitySpec);
+    }
+
     for (const applicationSpec of addWelcomeApplicationVariants(tag, spec)) {
       expanded.push(applicationSpec);
     }
@@ -267,16 +337,23 @@ export function analyzeText(sourceText, master, defaults) {
       const ascii = isAsciiOnly(normalizedTerm);
       const tokenBoundary = ascii && (tag.match_policy === "token_exact" || charLength(normalizedTerm) <= 3);
 
-      for (const hit of findAll(text, spec.term, { tokenBoundary: tokenBoundary })) {
+      for (const hit of findAll(text, spec.term, {
+        tokenBoundary: tokenBoundary,
+        semanticSuffixBoundary: !!spec.semanticSuffixBoundary
+      })) {
         if (isLocallyExcluded(hit, exclusions)) {
           evidences.push({ decision:"suppressed", source:spec.source, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:"除外語の出現範囲内" });
           continue;
         }
         if (spec.loose) {
-          const looseSource = spec.generatedType === "application" ? "generated_application" : "loose";
+          const looseSource = spec.generatedType === "application"
+            ? "generated_application"
+            : (spec.generatedType === "presence_review" ? "generated_presence" : "loose");
           const looseReason = spec.generatedType === "application"
             ? "応募表現variant（要確認）"
-            : (tokenBoundary ? "loose alias（トークン境界一致）" : "loose alias");
+            : (spec.generatedType === "presence_review"
+              ? "在籍表現variant（要確認）"
+              : (tokenBoundary ? "loose alias（トークン境界一致）" : "loose alias"));
           evidences.push({ decision:"review", source:looseSource, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:looseReason });
           continue;
         }
@@ -291,10 +368,18 @@ export function analyzeText(sourceText, master, defaults) {
         }
         const matchedSource = spec.generatedType === "application"
           ? "generated_application"
-          : (spec.generated ? "generated_variant" : spec.source);
+          : (spec.generatedType === "presence_absence"
+            ? "generated_presence_absence"
+            : (spec.generatedType === "activity"
+              ? "generated_activity"
+              : (spec.generated ? "generated_variant" : spec.source)));
         const matchedReason = spec.generatedType === "application"
           ? "応募表現variant"
-          : (tokenBoundary ? "ASCIIトークン境界一致" : "文字列一致");
+          : (spec.generatedType === "presence_absence"
+            ? "あり・なし表記variant"
+            : (spec.generatedType === "activity"
+              ? "活躍表現variant"
+              : (tokenBoundary ? "ASCIIトークン境界一致" : "文字列一致")));
         evidences.push({ decision:"matched", source:matchedSource, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:matchedReason });
       }
     }
