@@ -10114,7 +10114,9 @@
       "middle_category": "就業場所",
       "job_tag": "ガソリンスタンド",
       "canonical": "ガソリンスタンド",
-      "alias_strict": [],
+      "alias_strict": [
+        "サービスステーション"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10341,7 +10343,10 @@
       "middle_category": "就業場所",
       "job_tag": "コンビニエンスストア",
       "canonical": "コンビニエンスストア",
-      "alias_strict": [],
+      "alias_strict": [
+        "コンビニ",
+        "コンビニ店"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10614,7 +10619,9 @@
       "middle_category": "就業場所",
       "job_tag": "パン屋",
       "canonical": "パン屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "ベーカリー"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -10653,7 +10660,11 @@
       "middle_category": "就業場所",
       "job_tag": "ファーストフード店",
       "canonical": "ファーストフード店",
-      "alias_strict": [],
+      "alias_strict": [
+        "ファストフード店",
+        "ファーストフード",
+        "ファストフード"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10666,7 +10677,9 @@
       "middle_category": "就業場所",
       "job_tag": "ファミリーレストラン",
       "canonical": "ファミリーレストラン",
-      "alias_strict": [],
+      "alias_strict": [
+        "ファミレス"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10796,7 +10809,9 @@
       "middle_category": "就業場所",
       "job_tag": "ラーメン屋",
       "canonical": "ラーメン屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "ラーメン店"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11022,7 +11037,9 @@
       "middle_category": "就業場所",
       "job_tag": "保育園",
       "canonical": "保育園",
-      "alias_strict": [],
+      "alias_strict": [
+        "保育所"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11300,7 +11317,9 @@
       "middle_category": "就業場所",
       "job_tag": "寿司屋",
       "canonical": "寿司屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "寿司店"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11469,7 +11488,9 @@
       "middle_category": "就業場所",
       "job_tag": "弁当屋",
       "canonical": "弁当屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "弁当店"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11599,7 +11620,9 @@
       "middle_category": "就業場所",
       "job_tag": "本屋",
       "canonical": "本屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "書店"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11729,7 +11752,10 @@
       "middle_category": "就業場所",
       "job_tag": "理容室",
       "canonical": "理容室",
-      "alias_strict": [],
+      "alias_strict": [
+        "理髪店",
+        "床屋"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11781,7 +11807,9 @@
       "middle_category": "就業場所",
       "job_tag": "百貨店",
       "canonical": "百貨店",
-      "alias_strict": [],
+      "alias_strict": [
+        "デパート"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11924,7 +11952,9 @@
       "middle_category": "就業場所",
       "job_tag": "美容院",
       "canonical": "美容院",
-      "alias_strict": [],
+      "alias_strict": [
+        "美容室"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11989,7 +12019,9 @@
       "middle_category": "就業場所",
       "job_tag": "花屋",
       "canonical": "花屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "生花店"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -12197,7 +12229,10 @@
       "middle_category": "就業場所",
       "job_tag": "靴屋",
       "canonical": "靴屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "靴店",
+        "シューズショップ"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
