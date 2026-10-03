@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { analyzeText } from "../matcher.js";
+import { analyzeFields, analyzeText } from "../matcher.js";
 
 const master = JSON.parse(fs.readFileSync(new URL("../data/job-tags.json", import.meta.url), "utf8"));
 const defaults = JSON.parse(fs.readFileSync(new URL("../config/matching-defaults.json", import.meta.url), "utf8"));
@@ -13,7 +13,9 @@ let passed = 0;
 const failures = [];
 
 for (const tc of cases) {
-  const result = analyzeText(tc.text, master, defaults);
+  const result = tc.fields
+    ? analyzeFields(tc.fields, master, defaults)
+    : analyzeText(tc.text, master, defaults);
   const errors = [];
 
   for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);
