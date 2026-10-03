@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "normalization": {
     "unicode": "NFKC",
     "ascii_case_insensitive": true
@@ -50,6 +50,45 @@
         "フリーター可",
         "フリーターも可"
       ]
+    }
+  },
+  "welcome_application_variants": {
+    "enabled": true,
+    "scope": "Only tags in middle_category 応募歓迎. Derive from canonical/aliases ending in 歓迎, excluding 大歓迎 and 応募歓迎 so generated variants do not recursively expand.",
+    "inherited_confidence_suffixes": [
+      "応募歓迎",
+      "応募OK",
+      "も応募OK"
+    ],
+    "force_loose_suffixes": [
+      "応募可",
+      "も応募可",
+      "応募可能",
+      "も応募可能"
+    ],
+    "confidence_rule": "Variants from a loose source remain loose. force_loose_suffixes are always review candidates even when derived from a strict source.",
+    "examples": {
+      "フリーター歓迎": {
+        "matched": [
+          "フリーター応募歓迎",
+          "フリーター応募OK",
+          "フリーターも応募OK"
+        ],
+        "review": [
+          "フリーター応募可",
+          "フリーターも応募可",
+          "フリーター応募可能",
+          "フリーターも応募可能"
+        ]
+      },
+      "主婦歓迎 (loose source)": {
+        "review": [
+          "主婦応募歓迎",
+          "主婦応募OK",
+          "主婦も応募OK",
+          "主婦応募可"
+        ]
+      }
     }
   }
 }
