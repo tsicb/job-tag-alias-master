@@ -69,6 +69,37 @@ function addAllowanceVariants(term) {
   return Array.from(new Set(out));
 }
 
+function isBaseWelcomeTerm(term) {
+  return term.endsWith("歓迎") &&
+    !term.endsWith("大歓迎") &&
+    !term.endsWith("応募歓迎");
+}
+
+function addWelcomeApplicationVariants(tag, spec) {
+  if (tag.middle_category !== "応募歓迎" || !isBaseWelcomeTerm(spec.term)) return [];
+
+  const stem = spec.term.slice(0, -2);
+  const inheritedLoose = !!spec.loose;
+  const variants = [
+    { term: stem + "応募歓迎", loose: inheritedLoose, variant: "application" },
+    { term: stem + "応募OK", loose: inheritedLoose, variant: "application" },
+    { term: stem + "も応募OK", loose: inheritedLoose, variant: "application" },
+    { term: stem + "応募可", loose: true, variant: "application" },
+    { term: stem + "も応募可", loose: true, variant: "application" },
+    { term: stem + "応募可能", loose: true, variant: "application" },
+    { term: stem + "も応募可能", loose: true, variant: "application" }
+  ];
+
+  return variants.map(function(v) {
+    return Object.assign({}, spec, {
+      term: v.term,
+      loose: v.loose,
+      generated: true,
+      generatedType: v.variant
+    });
+  });
+}
+
 function exclusionRanges(text, tag) {
   return (tag.exclude_terms || []).flatMap(function(term) {
     return findAll(text, term).map(function(hit) {
@@ -194,13 +225,23 @@ function buildTermSpecs(tag) {
 
   const expanded = [];
   for (const spec of specs) {
-    const variants = addAllowanceVariants(spec.term);
-    for (const term of variants) expanded.push(Object.assign({}, spec, { term: term, generated: term !== spec.term }));
+    const allowanceVariants = addAllowanceVariants(spec.term);
+    for (const term of allowanceVariants) {
+      expanded.push(Object.assign({}, spec, {
+        term: term,
+        generated: term !== spec.term,
+        generatedType: term !== spec.term ? "allowance" : null
+      }));
+    }
+
+    for (const applicationSpec of addWelcomeApplicationVariants(tag, spec)) {
+      expanded.push(applicationSpec);
+    }
   }
 
   const seen = new Set();
   return expanded.filter(function(spec) {
-    const key = normalizeText(spec.term) + "|" + spec.source;
+    const key = normalizeText(spec.term) + "|" + (spec.loose ? "loose" : "strict");
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -232,7 +273,11 @@ export function analyzeText(sourceText, master, defaults) {
           continue;
         }
         if (spec.loose) {
-          evidences.push({ decision:"review", source:"loose", term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:tokenBoundary ? "loose alias（トークン境界一致）" : "loose alias" });
+          const looseSource = spec.generatedType === "application" ? "generated_application" : "loose";
+          const looseReason = spec.generatedType === "application"
+            ? "応募表現variant（要確認）"
+            : (tokenBoundary ? "loose alias（トークン境界一致）" : "loose alias");
+          evidences.push({ decision:"review", source:looseSource, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:looseReason });
           continue;
         }
         if (tag.match_policy === "context") {
@@ -244,7 +289,13 @@ export function analyzeText(sourceText, master, defaults) {
           evidences.push({ decision:"matched", source:spec.source, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:"patternタグのcanonical明示" });
           continue;
         }
-        evidences.push({ decision:"matched", source:spec.generated ? "generated_variant" : spec.source, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:tokenBoundary ? "ASCIIトークン境界一致" : "文字列一致" });
+        const matchedSource = spec.generatedType === "application"
+          ? "generated_application"
+          : (spec.generated ? "generated_variant" : spec.source);
+        const matchedReason = spec.generatedType === "application"
+          ? "応募表現variant"
+          : (tokenBoundary ? "ASCIIトークン境界一致" : "文字列一致");
+        evidences.push({ decision:"matched", source:matchedSource, term:spec.term, hitText:hit.text, start:hit.start, end:hit.end, reason:matchedReason });
       }
     }
 
