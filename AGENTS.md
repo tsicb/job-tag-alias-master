@@ -62,3 +62,13 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 - 表記揺れの横断追加は、canonical衝突・alias衝突が0件であることを確認してから反映する。
 - NFKCで吸収できる全角/半角差はaliasへ過剰追加しない。
 - 「短期3ヶ月」のように閾値条件を保証しない表現はlooseへ置く。
+
+## 歓迎系alias
+
+`応募歓迎` の `X歓迎` について:
+
+- `XOK` / `X大歓迎` / `X積極採用` はstrict。
+- `X可` は原則loose。
+- `Xも可` は `X可` のconfidenceを維持した共通語尾variant。
+- 既存loose表現から派生したOK等をstrictへ昇格させない。
+- `活躍中` / `在籍` を歓迎タグへ一括変換しない。別canonicalがあれば必ず分離する。
