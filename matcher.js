@@ -194,7 +194,7 @@ function buildTermSpecs(tag) {
 
   const expanded = [];
   for (const spec of specs) {
-    const variants = spec.loose ? [spec.term] : addAllowanceVariants(spec.term);
+    const variants = addAllowanceVariants(spec.term);
     for (const term of variants) expanded.push(Object.assign({}, spec, { term: term, generated: term !== spec.term }));
   }
 
