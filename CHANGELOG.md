@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2026-10-04 - Applicant wording variants
+
+求職者属性・経験条件の `応募歓迎 / 応募OK / 応募可 / 応募可能` 表現を共通matcher ruleへ追加。
+
+- strictなX歓迎 → X応募歓迎 / X応募OK / Xも応募OK は確定
+- X応募可 / Xも応募可 / X応募可能 / Xも応募可能 は要確認
+- looseな複合片側表現からの派生はlooseを維持
+- alias列への427件相当の大量展開を避け、config/matcherで動的生成
+- 大歓迎・応募歓迎からの再帰派生を禁止
+- LINE/Web/電話など応募方法は対象外
+
 ## 2026-10-04 - Welcome alias system
 
 応募歓迎34タグの語尾・複合表記を体系化。
