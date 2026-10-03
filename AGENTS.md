@@ -72,3 +72,13 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 - `Xも可` は `X可` のconfidenceを維持した共通語尾variant。
 - 既存loose表現から派生したOK等をstrictへ昇格させない。
 - `活躍中` / `在籍` を歓迎タグへ一括変換しない。別canonicalがあれば必ず分離する。
+
+## 応募表現variant
+
+応募歓迎タグの `X歓迎` から `X応募OK` 等を大量alias化しない。matcher/configの `welcome_application_variants` を使う。
+
+- strict source → 応募歓迎 / 応募OK / も応募OK はstrict
+- loose source → 上記もlooseのまま
+- 応募可 / も応募可 / 応募可能 / も応募可能 は常にloose
+- 大歓迎・応募歓迎から再帰生成しない
+- LINE応募可等の応募方法へ適用しない
