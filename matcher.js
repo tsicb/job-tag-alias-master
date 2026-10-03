@@ -228,7 +228,7 @@ function hasLocationMobilityContext(text, hit) {
 
 function hasPositiveLocationContext(text, hit) {
   const after = text.slice(hit.end, Math.min(text.length, hit.end + 30));
-  if (/^\s*(?:内(?:で|にて)|で|にて)(?:\s|、|。|の|$)/u.test(after)) return true;
+  if (/^\s*(?:内(?:で|にて)|で|にて)/u.test(after)) return true;
   if (/^\s*(?:で|に|へ)?(?:勤務|就業|配属)/u.test(after)) return true;
   if (/^\s*(?:勤務|就業)(?:です|となります|する|します|予定|$)/u.test(after)) return true;
   return false;
