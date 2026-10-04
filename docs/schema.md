@@ -67,3 +67,32 @@
 ```
 
 この関係は同義語ではなく、matched済みの子タグから広告マッチング上妥当な親タグを派生するためのもの。alias_strict / alias_looseとは別概念として扱う。
+
+
+## location-entities.json
+
+就業場所の固有ブランド名・施設名は `data/location-entities.json` で管理する。
+
+主なフィールド:
+
+| field | 意味 |
+|---|---|
+| canonical_entity | entityの代表表記 |
+| aliases[] | entity自体の表記揺れ・略称 |
+| maps_to[] | 接続先の就業場所canonical |
+| kind | `brand` / `facility` |
+
+例:
+
+```json
+{
+  "canonical_entity": "セブンイレブン",
+  "aliases": ["セブン-イレブン", "7-ELEVEN"],
+  "maps_to": ["コンビニエンスストア"],
+  "kind": "brand"
+}
+```
+
+entityはaliasとは別概念。ブランド名・施設固有名詞そのものをcanonicalの同義語とは扱わない。
+
+`maps_to` は原則、最も特徴的で安定して言えるカテゴリに絞る。上位カテゴリへの展開は `config/matching-defaults.json` の `location_matching.implications` を使う。
