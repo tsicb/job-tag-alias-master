@@ -32,7 +32,7 @@
   </section>
 </main>
 <script type="module">
-import { loadResources, analyzeText } from "./matcher.js";
+import { loadResources, analyzeFields, analyzeText } from "./matcher.js";
 
 const runBtn = document.querySelector("#runBtn");
 const summary = document.querySelector("#summary");
@@ -49,7 +49,9 @@ function run() {
   let passed = 0;
 
   for (const tc of cases) {
-    const result = analyzeText(tc.text, resources.master, resources.defaults);
+    const result = tc.fields
+      ? analyzeFields(tc.fields, resources.master, resources.defaults, resources.entities)
+      : analyzeText(tc.text, resources.master, resources.defaults, resources.entities);
     const errors = [];
 
     for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);
@@ -62,7 +64,8 @@ function run() {
     if (ok) passed++;
 
     const tr = document.createElement("tr");
-    [ok ? "PASS" : "FAIL", tc.name, tc.text, ok ? "OK" : errors.join(" / ")].forEach(function(v, i) {
+    const inputLabel = tc.text || (tc.fields || []).map(function(f) { return f.name + "：" + f.value; }).join("\n");
+    [ok ? "PASS" : "FAIL", tc.name, inputLabel, ok ? "OK" : errors.join(" / ")].forEach(function(v, i) {
       const td = document.createElement("td");
       td.textContent = v;
       if (i === 0) td.className = ok ? "decision decision-matched" : "decision decision-suppressed";
