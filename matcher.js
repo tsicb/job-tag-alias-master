@@ -633,13 +633,112 @@ function compileTagRuntime(tag) {
   };
 }
 
+function buildCandidateIndex(runtimeTags) {
+  const termOwners = new Map();
+
+  runtimeTags.forEach(function(runtimeTag, tagIndex) {
+    for (const spec of runtimeTag.specs || []) {
+      const term = spec.normalizedTerm;
+      if (!term) continue;
+      if (!termOwners.has(term)) termOwners.set(term, new Set());
+      termOwners.get(term).add(tagIndex);
+    }
+  });
+
+  const nodes = [{ next:new Map(), fail:0, outputs:[] }];
+
+  for (const [term, owners] of termOwners.entries()) {
+    let state = 0;
+    for (let i = 0; i < term.length; i++) {
+      const ch = term[i];
+      let nextState = nodes[state].next.get(ch);
+      if (nextState == null) {
+        nextState = nodes.length;
+        nodes[state].next.set(ch, nextState);
+        nodes.push({ next:new Map(), fail:0, outputs:[] });
+      }
+      state = nextState;
+    }
+    nodes[state].outputs.push.apply(nodes[state].outputs, Array.from(owners));
+  }
+
+  const queue = [];
+  for (const nextState of nodes[0].next.values()) {
+    nodes[nextState].fail = 0;
+    queue.push(nextState);
+  }
+
+  let head = 0;
+  while (head < queue.length) {
+    const state = queue[head++];
+    for (const [ch, nextState] of nodes[state].next.entries()) {
+      queue.push(nextState);
+      let fallback = nodes[state].fail;
+      while (fallback && !nodes[fallback].next.has(ch)) {
+        fallback = nodes[fallback].fail;
+      }
+      const fallbackNext = nodes[fallback].next.get(ch);
+      nodes[nextState].fail = fallbackNext == null ? 0 : fallbackNext;
+      if (nodes[nodes[nextState].fail].outputs.length) {
+        nodes[nextState].outputs = nodes[nextState].outputs.concat(
+          nodes[nodes[nextState].fail].outputs
+        );
+      }
+    }
+  }
+
+  return {
+    nodes:nodes,
+    uniqueTermCount:termOwners.size
+  };
+}
+
+function collectCandidateTagIndexes(text, candidateIndex, alwaysTagIndexes) {
+  const candidates = new Set(alwaysTagIndexes || []);
+  if (!candidateIndex || !candidateIndex.nodes || !candidateIndex.nodes.length || !text) {
+    return candidates;
+  }
+
+  const nodes = candidateIndex.nodes;
+  let state = 0;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+
+    while (state && !nodes[state].next.has(ch)) {
+      state = nodes[state].fail;
+    }
+
+    const nextState = nodes[state].next.get(ch);
+    state = nextState == null ? 0 : nextState;
+
+    const outputs = nodes[state].outputs;
+    for (let j = 0; j < outputs.length; j++) {
+      candidates.add(outputs[j]);
+    }
+  }
+
+  return candidates;
+}
+
 function compileRuntime(master, defaults, entities) {
   const started = nowMs();
   const tags = (master.tags || []).map(compileTagRuntime);
   const tagByCanonical = new Map((master.tags || []).map(function(tag) {
     return [tag.canonical, tag];
   }));
+  const tagIndexByCanonical = new Map(tags.map(function(runtimeTag, index) {
+    return [runtimeTag.tag.canonical, index];
+  }));
   const entityTerms = compileEntityTerms(master, entities);
+  const candidateIndex = buildCandidateIndex(tags);
+  const alwaysTagIndexes = [];
+
+  tags.forEach(function(runtimeTag, index) {
+    if (runtimeTag.isSea || runtimeTag.tag.match_policy === "pattern") {
+      alwaysTagIndexes.push(index);
+    }
+  });
 
   return {
     master:master,
@@ -647,10 +746,16 @@ function compileRuntime(master, defaults, entities) {
     entities:entities,
     tags:tags,
     tagByCanonical:tagByCanonical,
+    tagIndexByCanonical:tagIndexByCanonical,
     entityTerms:entityTerms,
+    candidateIndex:candidateIndex,
+    alwaysTagIndexes:alwaysTagIndexes,
     stats:{
       tagCount:tags.length,
       termCount:tags.reduce(function(sum, item) { return sum + item.specs.length; }, 0),
+      uniqueIndexedTermCount:candidateIndex.uniqueTermCount,
+      indexNodeCount:candidateIndex.nodes.length,
+      alwaysTagCount:alwaysTagIndexes.length,
       excludeTermCount:tags.reduce(function(sum, item) { return sum + item.excludeTerms.length; }, 0),
       entityTermCount:entityTerms.length,
       compileMs:nowMs() - started
@@ -698,6 +803,8 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities, runtim
   const profileEnabled = !!(options && options.profile);
   const profile = profileEnabled ? {
     entityMs:0,
+    candidateMs:0,
+    candidateTagCount:0,
     tagScanMs:0,
     implicationMs:0,
     sortMs:0,
@@ -710,10 +817,33 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities, runtim
   const entityEvidenceByCanonical = buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities, runtime);
   if (profileEnabled) profile.entityMs = nowMs() - entityStarted;
 
+  const candidateStarted = profileEnabled ? nowMs() : 0;
+  let runtimeTags;
+
+  if (runtime && runtime.tags && runtime.candidateIndex) {
+    const candidateIndexes = collectCandidateTagIndexes(
+      text,
+      runtime.candidateIndex,
+      runtime.alwaysTagIndexes
+    );
+
+    for (const canonical of entityEvidenceByCanonical.keys()) {
+      const tagIndex = runtime.tagIndexByCanonical.get(canonical);
+      if (tagIndex != null) candidateIndexes.add(tagIndex);
+    }
+
+    const orderedIndexes = Array.from(candidateIndexes).sort(function(a,b) { return a-b; });
+    runtimeTags = orderedIndexes.map(function(index) { return runtime.tags[index]; });
+
+    if (profileEnabled) profile.candidateTagCount = runtimeTags.length;
+  } else {
+    runtimeTags = master.tags || [];
+    runtimeTags = runtimeTags.map(compileTagRuntime);
+    if (profileEnabled) profile.candidateTagCount = runtimeTags.length;
+  }
+
+  if (profileEnabled) profile.candidateMs = nowMs() - candidateStarted;
   const scanStarted = profileEnabled ? nowMs() : 0;
-  const runtimeTags = runtime && runtime.tags
-    ? runtime.tags
-    : (master.tags || []).map(compileTagRuntime);
 
   for (const runtimeTag of runtimeTags) {
     const tag = runtimeTag.tag;
