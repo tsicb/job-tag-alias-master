@@ -409,6 +409,84 @@ function buildTermSpecs(tag) {
   });
 }
 
+
+function applyLocationImplications(results, master, defaults) {
+  const implications = defaults && defaults.location_matching && defaults.location_matching.implications;
+  if (!implications) return;
+
+  const tagByCanonical = new Map((master.tags || []).map(function(tag) {
+    return [tag.canonical, tag];
+  }));
+  const resultByCanonical = new Map(results.map(function(result) {
+    return [result.canonical, result];
+  }));
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const matchedSnapshot = results.filter(function(result) {
+      return result.decision === "matched";
+    });
+
+    for (const child of matchedSnapshot) {
+      const parents = implications[child.canonical] || [];
+      for (const parentCanonical of parents) {
+        const parentTag = tagByCanonical.get(parentCanonical);
+        if (!parentTag) continue;
+
+        const evidence = {
+          decision:"matched",
+          source:"implication",
+          term:child.canonical,
+          hitText:child.hit_text,
+          start:0,
+          end:0,
+          reason:child.canonical + " の明示的な包含関係から派生",
+          fieldName:child.field_name || null,
+          fieldGroup:child.field_group || null
+        };
+
+        const existing = resultByCanonical.get(parentCanonical);
+        if (existing) {
+          if (existing.decision !== "matched") {
+            existing.decision = "matched";
+            existing.hit_text = child.hit_text;
+            existing.hit_source = "implication";
+            existing.reason = evidence.reason;
+            existing.context = child.context;
+            existing.field_name = child.field_name || null;
+            existing.field_group = child.field_group || null;
+            existing.evidences = (existing.evidences || []).concat([evidence]);
+            changed = true;
+          }
+          continue;
+        }
+
+        const derived = {
+          decision:"matched",
+          tag_code:parentTag.tag_code,
+          canonical:parentTag.canonical,
+          job_tag:parentTag.job_tag,
+          major_category:parentTag.major_category,
+          middle_category:parentTag.middle_category,
+          match_policy:parentTag.match_policy,
+          hit_text:child.hit_text,
+          hit_source:"implication",
+          reason:evidence.reason,
+          context:child.context,
+          field_name:child.field_name || null,
+          field_group:child.field_group || null,
+          implied_by:child.canonical,
+          evidences:[evidence]
+        };
+        results.push(derived);
+        resultByCanonical.set(parentCanonical, derived);
+        changed = true;
+      }
+    }
+  }
+}
+
 function analyzeNormalized(text, master, defaults, fieldRanges) {
   const results = [];
 
@@ -512,6 +590,8 @@ function analyzeNormalized(text, master, defaults, fieldRanges) {
       evidences:evidences
     });
   }
+
+  applyLocationImplications(results, master, defaults);
 
   const order = { matched:0, review:1, suppressed:2 };
   results.sort(function(a,b) {
