@@ -77,7 +77,7 @@ async function runAnalysis() {
   }
   setStatus("判定中...");
   try {
-    lastAnalysis = analyzeText(source, resources.master, resources.defaults);
+    lastAnalysis = analyzeText(source, resources.master, resources.defaults, resources.entities);
     render();
     setStatus("判定完了: 確定 " + lastAnalysis.matched.length + " / 要確認 " + lastAnalysis.review.length + " / 抑止 " + lastAnalysis.suppressed.length, "ok");
   } catch (error) {
