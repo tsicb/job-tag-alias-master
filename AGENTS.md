@@ -115,3 +115,12 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 - `セントレア → 空港`、`セブンイレブン → コンビニエンスストア` のような固有名詞→カテゴリ変換はentity mapping。
 - 企業名から業態を推測する一般推論は行わない。
 - 短いASCII entity alias（KFC / USJ / GU / DCM等）はASCII token境界を要求する。
+
+
+## Performance / compiled matcher
+
+- 大量処理では `compileMatcher(master, defaults, entities)` を1回だけ呼び、返された `analyzeText` / `analyzeFields` を全求人で再利用する。
+- 各求人ごとに `buildTermSpecs()`、alias/variant展開、検索語正規化、entity term構築、canonical Map構築をやり直さない。
+- 高速化で判定意味を変えない。compiled版と互換版は回帰テストで完全一致を維持する。
+- `profile:true` は計測用。通常処理では無効にし、debug時だけ使用する。
+- 次段階の検索アルゴリズム変更（複数語一括検索等）は、compiled化後の実測を見て判断する。
