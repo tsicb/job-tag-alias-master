@@ -1,5 +1,6 @@
 const DEFAULTS_URL = "./config/matching-defaults.json";
 const MASTER_URL = "./data/job-tags.json";
+const LOCATION_ENTITIES_URL = "./data/location-entities.json";
 
 let cache = null;
 
@@ -7,14 +8,17 @@ export async function loadResources() {
   if (cache) return cache;
   const responses = await Promise.all([
     fetch(MASTER_URL, { cache: "no-store" }),
-    fetch(DEFAULTS_URL, { cache: "no-store" })
+    fetch(DEFAULTS_URL, { cache: "no-store" }),
+    fetch(LOCATION_ENTITIES_URL, { cache: "no-store" })
   ]);
   const masterRes = responses[0];
   const defaultsRes = responses[1];
+  const entitiesRes = responses[2];
   if (!masterRes.ok) throw new Error("Master load failed: " + masterRes.status);
   if (!defaultsRes.ok) throw new Error("Defaults load failed: " + defaultsRes.status);
-  const values = await Promise.all([masterRes.json(), defaultsRes.json()]);
-  cache = { master: values[0], defaults: values[1] };
+  if (!entitiesRes.ok) throw new Error("Location entities load failed: " + entitiesRes.status);
+  const values = await Promise.all([masterRes.json(), defaultsRes.json(), entitiesRes.json()]);
+  cache = { master: values[0], defaults: values[1], entities: values[2] };
   return cache;
 }
 
@@ -410,6 +414,87 @@ function buildTermSpecs(tag) {
 }
 
 
+
+function hasEntityPositiveLocationContext(text, hit) {
+  if (hasPositiveLocationContext(text, hit)) return true;
+  const after = text.slice(hit.end, Math.min(text.length, hit.end + 36));
+  return /^(?:[^。\n]{0,16}(?:店|店舗|支店|空港|パーク|ランド|館|センター))?(?:内)?(?:で|にて|勤務|配属)/u.test(after);
+}
+
+function classifyEntityLocationContext(tag, text, hit, fieldInfo, entity) {
+  const group = fieldInfo && fieldInfo.group ? fieldInfo.group : "unknown";
+  const mobility = hasLocationMobilityContext(text, hit);
+  const positive = hasEntityPositiveLocationContext(text, hit);
+
+  if (group === "primary" || group === "identity") {
+    return { decision:"matched", reason:"固有名詞を就業場所の強いフィールドで確認" };
+  }
+  if (group === "weak") {
+    return { decision:"review", reason:"固有名詞が住所・交通・選考等の弱いフィールドに出現" };
+  }
+  if (mobility) {
+    return { decision:"review", reason:"固有名詞は確認できるが配送・納品・訪問・移動先等の可能性がある" };
+  }
+  if (group === "description") {
+    if (positive) return { decision:"matched", reason:"仕事内容内で固有名詞と就業場所文脈を確認" };
+    return { decision:"review", reason:"仕事内容内の固有名詞だが就業場所としての関係確認が必要" };
+  }
+  if (group === "support") {
+    return { decision:"review", reason:"補助フィールド内の固有名詞のため要確認" };
+  }
+  if (positive) {
+    return { decision:"matched", reason:"固有名詞と就業場所を示す文脈を確認" };
+  }
+  return { decision:"review", reason:"固有名詞は確認できるが就業場所としての関係確認が必要" };
+}
+
+function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities) {
+  const out = new Map();
+  if (!entities || !Array.isArray(entities.entities)) return out;
+
+  const tagByCanonical = new Map((master.tags || []).map(function(tag) {
+    return [tag.canonical, tag];
+  }));
+
+  for (const entity of entities.entities) {
+    const terms = [entity.canonical_entity].concat(entity.aliases || []);
+    for (const rawTerm of terms) {
+      const term = normalizeText(rawTerm);
+      if (!term) continue;
+      const ascii = isAsciiOnly(term);
+      const tokenBoundary = ascii && charLength(term) <= 3;
+
+      for (const hit of findAll(text, rawTerm, { tokenBoundary:tokenBoundary })) {
+        const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
+
+        for (const targetCanonical of entity.maps_to || []) {
+          const tag = tagByCanonical.get(targetCanonical);
+          if (!tag || tag.middle_category !== "就業場所") continue;
+
+          const ctx = classifyEntityLocationContext(tag, text, hit, fieldInfo, entity);
+          const evidence = {
+            decision:ctx.decision,
+            source:"entity",
+            term:rawTerm,
+            hitText:hit.text,
+            start:hit.start,
+            end:hit.end,
+            reason:ctx.reason,
+            fieldName:fieldInfo.name,
+            fieldGroup:fieldInfo.group,
+            entityCanonical:entity.canonical_entity,
+            entityKind:entity.kind || null
+          };
+          if (!out.has(targetCanonical)) out.set(targetCanonical, []);
+          out.get(targetCanonical).push(evidence);
+        }
+      }
+    }
+  }
+
+  return out;
+}
+
 function applyLocationImplications(results, master, defaults) {
   const implications = defaults && defaults.location_matching && defaults.location_matching.implications;
   if (!implications) return;
@@ -487,12 +572,13 @@ function applyLocationImplications(results, master, defaults) {
   }
 }
 
-function analyzeNormalized(text, master, defaults, fieldRanges) {
+function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
   const results = [];
+  const entityEvidenceByCanonical = buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities);
 
   for (const tag of master.tags || []) {
     const exclusions = exclusionRanges(text, tag);
-    const evidences = [];
+    const evidences = (entityEvidenceByCanonical.get(tag.canonical) || []).slice();
 
     if (tag.match_policy === "pattern") {
       for (const hit of patternMatches(tag, text)) {
@@ -587,6 +673,7 @@ function analyzeNormalized(text, master, defaults, fieldRanges) {
       context:contextSnippet(text, primary.start, primary.end, 50),
       field_name:primary.fieldName || null,
       field_group:primary.fieldGroup || null,
+      entity_name:primary.entityCanonical || null,
       evidences:evidences
     });
   }
@@ -612,11 +699,11 @@ function analyzeNormalized(text, master, defaults, fieldRanges) {
 }
 
 
-export function analyzeText(sourceText, master, defaults) {
-  return analyzeNormalized(normalizeText(sourceText), master, defaults, null);
+export function analyzeText(sourceText, master, defaults, entities) {
+  return analyzeNormalized(normalizeText(sourceText), master, defaults, null, entities);
 }
 
-export function analyzeFields(fields, master, defaults) {
+export function analyzeFields(fields, master, defaults, entities) {
   const chunks = [];
   const ranges = [];
   let cursor = 0;
@@ -638,10 +725,10 @@ export function analyzeFields(fields, master, defaults) {
     });
   }
 
-  return analyzeNormalized(chunks.join(""), master, defaults, ranges);
+  return analyzeNormalized(chunks.join(""), master, defaults, ranges, entities);
 }
 
 export async function analyze(sourceText) {
   const resources = await loadResources();
-  return analyzeText(sourceText, resources.master, resources.defaults);
+  return analyzeText(sourceText, resources.master, resources.defaults, resources.entities);
 }
