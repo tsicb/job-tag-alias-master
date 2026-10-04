@@ -124,3 +124,12 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 - 高速化で判定意味を変えない。compiled版と互換版は回帰テストで完全一致を維持する。
 - `profile:true` は計測用。通常処理では無効にし、debug時だけ使用する。
 - 次段階の検索アルゴリズム変更（複数語一括検索等）は、compiled化後の実測を見て判断する。
+
+
+### 候補インデックスはprefilterのみ
+
+- candidate indexは高速化用prefilterであり、matched/review/suppressedを直接決めない。
+- candidate HIT後は既存のtoken boundary / exclusion / context / pattern / fieldルールを必ず通す。
+- pattern policyタグ、海semantic pattern、entity evidence由来タグはliteral candidateがなくても評価対象へ加える。
+- 高速化変更ではcompiled版とcompatibility版の全回帰ケース完全一致を必須とする。
+- candidate indexへ新しい意味推論を入れない。
