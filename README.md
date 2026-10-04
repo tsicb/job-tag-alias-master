@@ -14,6 +14,7 @@
 - **Google Sheets**: 人がレビュー・編集する作業用正本
 - **GitHub**: 仕様書、変更履歴、アプリ向けCSV/JSON配布先
 - **config/matching-defaults.json**: 各アプリで共通利用するグローバル判定ルール
+- **data/location-entities.json**: 就業場所のブランド名・施設固有名詞をcanonicalタグへ接続するentity辞書
 
 ## データ構造
 
@@ -80,7 +81,7 @@ AIは `AGENTS.md`、`docs/schema.md`、`docs/matching-rules.md`、`config/matchi
 - 固定給閾値判定
 - 駅徒歩5分以内判定
 
-現在 103 / 103 ケース通過（就業場所のフィールド別判定・alias・包含関係を含む）。
+現在 118 / 118 ケース通過（就業場所のフィールド別判定・alias・entity mapping・包含関係を含む）。
 
 ## 自動テスト
 
