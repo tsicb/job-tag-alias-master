@@ -81,7 +81,7 @@ AIは `AGENTS.md`、`docs/schema.md`、`docs/matching-rules.md`、`config/matchi
 - 固定給閾値判定
 - 駅徒歩5分以内判定
 
-現在 118 / 118 ケース通過（就業場所のフィールド別判定・alias・entity mapping・包含関係を含む）。
+現在 120 / 120 ケース通過（就業場所のフィールド別判定・alias・entity mapping・包含関係を含む）。
 
 ## 自動テスト
 
