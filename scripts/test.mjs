@@ -18,7 +18,24 @@ for (const tc of cases) {
   const result = tc.fields
     ? compiled.analyzeFields(tc.fields)
     : compiled.analyzeText(tc.text);
+  const compatibilityResult = tc.fields
+    ? analyzeFields(tc.fields, master, defaults, entities)
+    : analyzeText(tc.text, master, defaults, entities);
   const errors = [];
+
+  const signature = (value) => value.results.map((r) => [
+    r.decision,
+    r.tag_code,
+    r.hit_source,
+    r.hit_text,
+    r.reason,
+    r.field_name || "",
+    r.entity_name || ""
+  ].join("|")).join("\n");
+
+  if (signature(result) !== signature(compatibilityResult)) {
+    errors.push("compiled / compatibility 判定差分");
+  }
 
   for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);
   for (const c of tc.review || []) if (!has(result.review, c)) errors.push("要確認にならない: " + c);
@@ -37,6 +54,9 @@ for (const tc of cases) {
 
 console.log("");
 console.log(passed + " / " + cases.length + " PASS");
+console.log("compiled terms:", compiled.stats.termCount,
+  "/ entity terms:", compiled.stats.entityTermCount,
+  "/ compile:", compiled.stats.compileMs.toFixed(2) + "ms");
 
 if (failures.length) {
   process.exitCode = 1;
