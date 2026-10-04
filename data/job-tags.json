@@ -9,8 +9,8 @@
   },
   "stats": {
     "tag_count": 1617,
-    "strict_alias_coverage": 667,
-    "loose_alias_coverage": 80,
+    "strict_alias_coverage": 718,
+    "loose_alias_coverage": 87,
     "cross_canonical_alias_collisions": 0,
     "match_policy_counts": {
       "token_exact": 116,
@@ -3664,7 +3664,9 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "低",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "https://"
+      ],
       "match_policy": "token_exact",
       "pattern_rule": null
     },
@@ -10036,7 +10038,11 @@
       "middle_category": "就業場所",
       "job_tag": "イタリアンレストラン",
       "canonical": "イタリアンレストラン",
-      "alias_strict": [],
+      "alias_strict": [
+        "イタリア料理屋",
+        "イタリア料理店",
+        "イタリア料理レストラン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10075,8 +10081,18 @@
       "middle_category": "就業場所",
       "job_tag": "オフィス",
       "canonical": "オフィス",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "営業所内",
+        "事務所内",
+        "支店内",
+        "本社内"
+      ],
+      "alias_loose": [
+        "営業所",
+        "事務所",
+        "支店",
+        "本社"
+      ],
       "difficulty": "高",
       "exclude_terms": [],
       "match_policy": "context",
@@ -10155,10 +10171,14 @@
       "middle_category": "就業場所",
       "job_tag": "カフェ",
       "canonical": "カフェ",
-      "alias_strict": [],
+      "alias_strict": [
+        "喫茶店"
+      ],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "ネットカフェ"
+      ],
       "match_policy": "context",
       "pattern_rule": null
     },
@@ -10168,7 +10188,9 @@
       "middle_category": "就業場所",
       "job_tag": "カラオケ店",
       "canonical": "カラオケ店",
-      "alias_strict": [],
+      "alias_strict": [
+        "カラオケ屋"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10181,7 +10203,9 @@
       "middle_category": "就業場所",
       "job_tag": "キッチン",
       "canonical": "キッチン",
-      "alias_strict": [],
+      "alias_strict": [
+        "厨房"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -10220,7 +10244,9 @@
       "middle_category": "就業場所",
       "job_tag": "クリーニング店",
       "canonical": "クリーニング店",
-      "alias_strict": [],
+      "alias_strict": [
+        "クリーニング屋"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10278,7 +10304,9 @@
       "middle_category": "就業場所",
       "job_tag": "ゲームセンター",
       "canonical": "ゲームセンター",
-      "alias_strict": [],
+      "alias_strict": [
+        "ゲーセン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10304,7 +10332,9 @@
       "middle_category": "就業場所",
       "job_tag": "コスメショップ",
       "canonical": "コスメショップ",
-      "alias_strict": [],
+      "alias_strict": [
+        "化粧品売り場"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10372,10 +10402,14 @@
       "middle_category": "就業場所",
       "job_tag": "サイクルショップ",
       "canonical": "サイクルショップ",
-      "alias_strict": [],
+      "alias_strict": [
+        "自転車屋"
+      ],
       "alias_loose": [],
       "difficulty": "低",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "リサイクルショップ"
+      ],
       "match_policy": "context",
       "pattern_rule": null
     },
@@ -10399,7 +10433,9 @@
       "job_tag": "スーパーマーケット",
       "canonical": "スーパーマーケット",
       "alias_strict": [],
-      "alias_loose": [],
+      "alias_loose": [
+        "スーパー"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -10411,7 +10447,9 @@
       "middle_category": "就業場所",
       "job_tag": "スキー場",
       "canonical": "スキー場",
-      "alias_strict": [],
+      "alias_strict": [
+        "ゲレンデ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10437,7 +10475,9 @@
       "middle_category": "就業場所",
       "job_tag": "スポーツ用品店",
       "canonical": "スポーツ用品店",
-      "alias_strict": [],
+      "alias_strict": [
+        "スポーツショップ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10450,7 +10490,9 @@
       "middle_category": "就業場所",
       "job_tag": "セレモニーホール",
       "canonical": "セレモニーホール",
-      "alias_strict": [],
+      "alias_strict": [
+        "葬儀場"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10463,7 +10505,9 @@
       "middle_category": "就業場所",
       "job_tag": "そば屋",
       "canonical": "そば屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "蕎麦屋"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -10594,7 +10638,10 @@
       "job_tag": "バイキングレストラン",
       "canonical": "バイキングレストラン",
       "alias_strict": [],
-      "alias_loose": [],
+      "alias_loose": [
+        "食べ放題のレストラン",
+        "食べ放題レストラン"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -10606,7 +10653,9 @@
       "middle_category": "就業場所",
       "job_tag": "パチンコ店",
       "canonical": "パチンコ店",
-      "alias_strict": [],
+      "alias_strict": [
+        "パチンコ屋"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10692,7 +10741,9 @@
       "middle_category": "就業場所",
       "job_tag": "フィットネスクラブ",
       "canonical": "フィットネスクラブ",
-      "alias_strict": [],
+      "alias_strict": [
+        "スポーツクラブ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10705,7 +10756,11 @@
       "middle_category": "就業場所",
       "job_tag": "フレンチレストラン",
       "canonical": "フレンチレストラン",
-      "alias_strict": [],
+      "alias_strict": [
+        "フランス料理屋",
+        "フランス料理店",
+        "フランス料理レストラン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10783,7 +10838,9 @@
       "middle_category": "就業場所",
       "job_tag": "マッサージ店",
       "canonical": "マッサージ店",
-      "alias_strict": [],
+      "alias_strict": [
+        "マッサージ屋"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10837,7 +10894,9 @@
       "middle_category": "就業場所",
       "job_tag": "リゾート",
       "canonical": "リゾート",
-      "alias_strict": [],
+      "alias_strict": [
+        "リゾート地"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -10863,8 +10922,13 @@
       "middle_category": "就業場所",
       "job_tag": "レストラン",
       "canonical": "レストラン",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "料理屋",
+        "料理店"
+      ],
+      "alias_loose": [
+        "飲食店"
+      ],
       "difficulty": "高",
       "exclude_terms": [],
       "match_policy": "context",
@@ -10933,7 +10997,11 @@
       "middle_category": "就業場所",
       "job_tag": "中華料理店",
       "canonical": "中華料理店",
-      "alias_strict": [],
+      "alias_strict": [
+        "中華料理屋",
+        "中華料理レストラン",
+        "中華レストラン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11130,7 +11198,9 @@
       "middle_category": "就業場所",
       "job_tag": "写真スタジオ",
       "canonical": "写真スタジオ",
-      "alias_strict": [],
+      "alias_strict": [
+        "フォトスタジオ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11224,7 +11294,10 @@
       "alias_strict": [],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "クルマ販売店",
+        "中古車販売店"
+      ],
       "match_policy": "context",
       "pattern_rule": null
     },
@@ -11503,7 +11576,11 @@
       "middle_category": "就業場所",
       "job_tag": "惣菜店",
       "canonical": "惣菜店",
-      "alias_strict": [],
+      "alias_strict": [
+        "総菜屋",
+        "総菜店",
+        "惣菜屋"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11516,7 +11593,9 @@
       "middle_category": "就業場所",
       "job_tag": "携帯ショップ",
       "canonical": "携帯ショップ",
-      "alias_strict": [],
+      "alias_strict": [
+        "スマホショップ"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11555,7 +11634,9 @@
       "middle_category": "就業場所",
       "job_tag": "整形外科医院",
       "canonical": "整形外科医院",
-      "alias_strict": [],
+      "alias_strict": [
+        "整形外科クリニック"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11581,7 +11662,15 @@
       "middle_category": "就業場所",
       "job_tag": "日本料理店",
       "canonical": "日本料理店",
-      "alias_strict": [],
+      "alias_strict": [
+        "日本料理屋",
+        "日本料理レストラン",
+        "和食料理屋",
+        "和食料理店",
+        "和食屋",
+        "和食店",
+        "和食レストラン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11594,7 +11683,9 @@
       "middle_category": "就業場所",
       "job_tag": "日本語学校",
       "canonical": "日本語学校",
-      "alias_strict": [],
+      "alias_strict": [
+        "日本語スクール"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11648,7 +11739,10 @@
       "middle_category": "就業場所",
       "job_tag": "歯科医院",
       "canonical": "歯科医院",
-      "alias_strict": [],
+      "alias_strict": [
+        "歯科クリニック",
+        "デンタルクリニック"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11687,8 +11781,15 @@
       "middle_category": "就業場所",
       "job_tag": "洋菓子店",
       "canonical": "洋菓子店",
-      "alias_strict": [],
-      "alias_loose": [],
+      "alias_strict": [
+        "ケーキ屋",
+        "ケーキショップ"
+      ],
+      "alias_loose": [
+        "スイーツショップ",
+        "スイーツ屋",
+        "スイーツ店"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -11822,7 +11923,10 @@
       "middle_category": "就業場所",
       "job_tag": "皮膚科クリニック",
       "canonical": "皮膚科クリニック",
-      "alias_strict": [],
+      "alias_strict": [
+        "皮膚科院",
+        "皮膚科医院"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11835,7 +11939,10 @@
       "middle_category": "就業場所",
       "job_tag": "眼科クリニック",
       "canonical": "眼科クリニック",
-      "alias_strict": [],
+      "alias_strict": [
+        "眼科院",
+        "眼科医院"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -11927,7 +12034,9 @@
       "job_tag": "美容クリニック",
       "canonical": "美容クリニック",
       "alias_strict": [],
-      "alias_loose": [],
+      "alias_loose": [
+        "脱毛クリニック"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -11967,7 +12076,9 @@
       "middle_category": "就業場所",
       "job_tag": "美術館",
       "canonical": "美術館",
-      "alias_strict": [],
+      "alias_strict": [
+        "アートミュージアム"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -11993,7 +12104,9 @@
       "middle_category": "就業場所",
       "job_tag": "脱毛サロン",
       "canonical": "脱毛サロン",
-      "alias_strict": [],
+      "alias_strict": [
+        "脱毛エステサロン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -12020,7 +12133,8 @@
       "job_tag": "花屋",
       "canonical": "花屋",
       "alias_strict": [
-        "生花店"
+        "生花店",
+        "フラワーショップ"
       ],
       "alias_loose": [],
       "difficulty": "高",
@@ -12034,7 +12148,10 @@
       "middle_category": "就業場所",
       "job_tag": "英会話教室",
       "canonical": "英会話教室",
-      "alias_strict": [],
+      "alias_strict": [
+        "英語教室",
+        "英会話スクール"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
@@ -12087,7 +12204,9 @@
       "job_tag": "買取専門店",
       "canonical": "買取専門店",
       "alias_strict": [],
-      "alias_loose": [],
+      "alias_loose": [
+        "質屋"
+      ],
       "difficulty": "低",
       "exclude_terms": [],
       "match_policy": "context",
@@ -12125,7 +12244,9 @@
       "middle_category": "就業場所",
       "job_tag": "遊園地",
       "canonical": "遊園地",
-      "alias_strict": [],
+      "alias_strict": [
+        "テーマパーク"
+      ],
       "alias_loose": [],
       "difficulty": "高",
       "exclude_terms": [],
@@ -12151,10 +12272,14 @@
       "middle_category": "就業場所",
       "job_tag": "酒屋",
       "canonical": "酒屋",
-      "alias_strict": [],
+      "alias_strict": [
+        "リカーショップ"
+      ],
       "alias_loose": [],
       "difficulty": "高",
-      "exclude_terms": [],
+      "exclude_terms": [
+        "居酒屋"
+      ],
       "match_policy": "context",
       "pattern_rule": null
     },
@@ -12245,7 +12370,11 @@
       "middle_category": "就業場所",
       "job_tag": "韓国料理店",
       "canonical": "韓国料理店",
-      "alias_strict": [],
+      "alias_strict": [
+        "韓国料理屋",
+        "韓国料理レストラン",
+        "韓国レストラン"
+      ],
       "alias_loose": [],
       "difficulty": "低",
       "exclude_terms": [],
