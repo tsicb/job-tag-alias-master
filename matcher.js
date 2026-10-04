@@ -421,19 +421,29 @@ function hasEntityPositiveLocationContext(text, hit) {
   return /^(?:[^。\n]{0,16}(?:店|店舗|支店|空港|パーク|ランド|館|センター))?(?:内)?(?:で|にて|勤務|配属)/u.test(after);
 }
 
+function hasEntityIndirectContext(text, hit) {
+  const after = text.slice(hit.end, Math.min(text.length, hit.end + 32));
+  return /^\s*(?:向け|用|の(?:商品|製品|資材|案件|システム))/u.test(after);
+}
+
 function classifyEntityLocationContext(tag, text, hit, fieldInfo, entity) {
   const group = fieldInfo && fieldInfo.group ? fieldInfo.group : "unknown";
   const mobility = hasLocationMobilityContext(text, hit);
+  const indirect = hasEntityIndirectContext(text, hit);
   const positive = hasEntityPositiveLocationContext(text, hit);
 
-  if (group === "primary" || group === "identity") {
-    return { decision:"matched", reason:"固有名詞を就業場所の強いフィールドで確認" };
+  if (group === "primary") {
+    return { decision:"matched", reason:"固有名詞を勤務場所フィールドで確認" };
+  }
+  if (group === "identity") {
+    if (mobility || indirect) return { decision:"review", reason:"仕事名内の固有名詞だが顧客・納品先等の可能性がある" };
+    return { decision:"matched", reason:"固有名詞を仕事名で確認" };
   }
   if (group === "weak") {
     return { decision:"review", reason:"固有名詞が住所・交通・選考等の弱いフィールドに出現" };
   }
-  if (mobility) {
-    return { decision:"review", reason:"固有名詞は確認できるが配送・納品・訪問・移動先等の可能性がある" };
+  if (mobility || indirect) {
+    return { decision:"review", reason:"固有名詞は確認できるが顧客・配送・納品・訪問・移動先等の可能性がある" };
   }
   if (group === "description") {
     if (positive) return { decision:"matched", reason:"仕事内容内で固有名詞と就業場所文脈を確認" };
@@ -462,7 +472,7 @@ function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entiti
       const term = normalizeText(rawTerm);
       if (!term) continue;
       const ascii = isAsciiOnly(term);
-      const tokenBoundary = ascii && charLength(term) <= 3;
+      const tokenBoundary = ascii;
 
       for (const hit of findAll(text, rawTerm, { tokenBoundary:tokenBoundary })) {
         const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
