@@ -1,10 +1,11 @@
 import fs from "node:fs";
-import { analyzeFields, analyzeText } from "../matcher.js";
+import { analyzeFields, analyzeText, compileMatcher } from "../matcher.js";
 
 const master = JSON.parse(fs.readFileSync(new URL("../data/job-tags.json", import.meta.url), "utf8"));
 const defaults = JSON.parse(fs.readFileSync(new URL("../config/matching-defaults.json", import.meta.url), "utf8"));
 const entities = JSON.parse(fs.readFileSync(new URL("../data/location-entities.json", import.meta.url), "utf8"));
 const cases = JSON.parse(fs.readFileSync(new URL("../tests/cases.json", import.meta.url), "utf8"));
+const compiled = compileMatcher(master, defaults, entities);
 
 function has(list, canonical) {
   return list.some((r) => r.canonical === canonical);
@@ -15,8 +16,8 @@ const failures = [];
 
 for (const tc of cases) {
   const result = tc.fields
-    ? analyzeFields(tc.fields, master, defaults, entities)
-    : analyzeText(tc.text, master, defaults, entities);
+    ? compiled.analyzeFields(tc.fields)
+    : compiled.analyzeText(tc.text);
   const errors = [];
 
   for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);
