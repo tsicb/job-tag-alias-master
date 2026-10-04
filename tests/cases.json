@@ -631,5 +631,152 @@
     "matched": [
       "オフィス"
     ]
+  },
+  {
+    "name": "HTTPS: 通常URLは除外",
+    "text": "詳細は https://example.com/jobs を確認してください",
+    "notMatched": [
+      "HTTPS"
+    ]
+  },
+  {
+    "name": "HTTPS: 技術要件は確定",
+    "text": "HTTPS通信とTLSの知識が必要です",
+    "matched": [
+      "HTTPS"
+    ]
+  },
+  {
+    "name": "就業場所誤爆: リサイクルショップからサイクルショップを除外",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "リサイクルショップで商品の販売を行います"
+      }
+    ],
+    "matched": [
+      "リサイクルショップ"
+    ],
+    "notMatched": [
+      "サイクルショップ"
+    ]
+  },
+  {
+    "name": "就業場所誤爆: 居酒屋から酒屋を除外",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "居酒屋でホール業務を担当します"
+      }
+    ],
+    "matched": [
+      "居酒屋"
+    ],
+    "notMatched": [
+      "酒屋"
+    ]
+  },
+  {
+    "name": "就業場所誤爆: 中古車販売店から売店を除外",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "中古車販売店で受付を担当します"
+      }
+    ],
+    "matched": [
+      "中古車販売店",
+      "クルマ販売店"
+    ],
+    "notMatched": [
+      "売店"
+    ]
+  },
+  {
+    "name": "就業場所誤爆: ネットカフェからカフェを除外",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "ネットカフェで受付業務を担当します"
+      }
+    ],
+    "matched": [
+      "ネットカフェ"
+    ],
+    "notMatched": [
+      "カフェ"
+    ]
+  },
+  {
+    "name": "alias strict: 喫茶店",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "喫茶店でホール業務を担当します"
+      }
+    ],
+    "matched": [
+      "カフェ"
+    ]
+  },
+  {
+    "name": "alias strict: 厨房",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "厨房で調理補助を行います"
+      }
+    ],
+    "matched": [
+      "キッチン"
+    ]
+  },
+  {
+    "name": "alias strict: ゲーセン",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "ゲーセンでフロア業務を行います"
+      }
+    ],
+    "matched": [
+      "ゲームセンター"
+    ]
+  },
+  {
+    "name": "alias strict: テーマパーク",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "テーマパークで接客を担当します"
+      }
+    ],
+    "matched": [
+      "遊園地"
+    ]
+  },
+  {
+    "name": "alias strict: 葬儀場",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "葬儀場で案内を担当します"
+      }
+    ],
+    "matched": [
+      "セレモニーホール"
+    ]
+  },
+  {
+    "name": "alias strict: フラワーショップ",
+    "fields": [
+      {
+        "name": "仕事内容",
+        "value": "フラワーショップで販売を担当します"
+      }
+    ],
+    "matched": [
+      "花屋"
+    ]
   }
 ]
