@@ -125,3 +125,26 @@ compile時に以下を1回だけ準備する。
 互換APIの `analyzeText()` / `analyzeFields()` は残すが、大量CSV処理ではcompiled matcherを再利用する。
 
 `scripts/test.mjs` はcompiled版と互換版の全回帰ケースの判定結果一致も検証する。
+
+
+### 候補インデックス
+
+compiled matcherは4,000件超のliteral検索語から候補タグを一括抽出するインデックスを持つ。
+
+候補インデックスは最終判定を行わず、評価対象タグを絞るためだけに使う。
+
+候補になったタグには従来どおり、
+
+- ASCII token境界
+- semantic suffix境界
+- exclude_terms
+- strict / loose confidence
+- context
+- pattern
+- field判定
+
+を適用する。
+
+patternタグ、`海` のsemantic pattern、entity由来タグは候補抽出で漏れないよう別経路で必ず評価対象へ加える。
+
+大量処理では、1,617タグ全件を毎求人で走査せず、本文にliteral HITした候補＋特殊判定対象だけを精密評価する。
