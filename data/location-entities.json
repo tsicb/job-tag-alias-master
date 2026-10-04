@@ -1,0 +1,914 @@
+{
+  "schema_version": "0.1.0",
+  "snapshot_date": "2026-10-04",
+  "purpose": "就業場所の固有ブランド名・施設名を求人タグcanonicalへ変換する。aliasとは分離し、フィールド・文脈判定を通してmatched/reviewを決める。",
+  "rules": {
+    "direct_mapping": "各entityは最も特徴的で安定して言える就業場所canonicalへ直接mapする。上位タグはlocation_matching.implicationsへ委ねる。",
+    "context": "entity HITだけで自動確定しない。勤務場所名・仕事名は強い証拠、仕事内容は就業文脈でmatched、配送・納品・訪問等はreview、住所・交通等は弱い証拠。",
+    "scope": "v0.1は求人で遭遇頻度が高く、業態が比較的固定された代表ブランド・施設に限定する。"
+  },
+  "entities": [
+    {
+      "canonical_entity": "セブンイレブン",
+      "aliases": [
+        "セブン-イレブン",
+        "セブン‐イレブン",
+        "セブン－イレブン",
+        "7-ELEVEN",
+        "7ELEVEN",
+        "7-11"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ローソン",
+      "aliases": [
+        "LAWSON"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ファミリーマート",
+      "aliases": [
+        "ファミマ",
+        "FamilyMart"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ミニストップ",
+      "aliases": [
+        "MINISTOP"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "デイリーヤマザキ",
+      "aliases": [
+        "Daily Yamazaki"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "セイコーマート",
+      "aliases": [
+        "セコマ"
+      ],
+      "maps_to": [
+        "コンビニエンスストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "マクドナルド",
+      "aliases": [
+        "McDonald's",
+        "McDonalds"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "モスバーガー",
+      "aliases": [
+        "MOS BURGER"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ケンタッキーフライドチキン",
+      "aliases": [
+        "ケンタッキー",
+        "KFC"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "バーガーキング",
+      "aliases": [
+        "BURGER KING"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ロッテリア",
+      "aliases": [
+        "LOTTERIA"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "フレッシュネスバーガー",
+      "aliases": [
+        "FRESHNESS BURGER"
+      ],
+      "maps_to": [
+        "ファーストフード店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ガスト",
+      "aliases": [],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "サイゼリヤ",
+      "aliases": [
+        "サイゼ"
+      ],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "デニーズ",
+      "aliases": [
+        "Denny's",
+        "Dennys"
+      ],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ココス",
+      "aliases": [
+        "COCO'S",
+        "COCOS"
+      ],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ロイヤルホスト",
+      "aliases": [
+        "Royal Host"
+      ],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "バーミヤン",
+      "aliases": [],
+      "maps_to": [
+        "ファミリーレストラン"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "スターバックス",
+      "aliases": [
+        "スターバックスコーヒー",
+        "スタバ",
+        "Starbucks"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ドトールコーヒーショップ",
+      "aliases": [
+        "ドトール",
+        "DOUTOR"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "タリーズコーヒー",
+      "aliases": [
+        "タリーズ",
+        "TULLY'S",
+        "TULLYS"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "コメダ珈琲店",
+      "aliases": [
+        "コメダ",
+        "Komeda's Coffee",
+        "KOMEDA"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "カフェ・ベローチェ",
+      "aliases": [
+        "カフェベローチェ",
+        "VELOCE"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "エクセルシオールカフェ",
+      "aliases": [
+        "エクセルシオール カフェ",
+        "EXCELSIOR CAFFE"
+      ],
+      "maps_to": [
+        "カフェ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "西友",
+      "aliases": [
+        "SEIYU"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "マルエツ",
+      "aliases": [
+        "maruetsu"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ヤオコー",
+      "aliases": [
+        "YAOKO"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "サミットストア",
+      "aliases": [
+        "SUMMIT STORE"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ベルク",
+      "aliases": [
+        "Belc"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "成城石井",
+      "aliases": [],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ロピア",
+      "aliases": [
+        "LOPIA"
+      ],
+      "maps_to": [
+        "スーパーマーケット"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "マツモトキヨシ",
+      "aliases": [
+        "マツキヨ"
+      ],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ウエルシア",
+      "aliases": [
+        "Welcia"
+      ],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "スギ薬局",
+      "aliases": [
+        "スギドラッグ"
+      ],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ツルハドラッグ",
+      "aliases": [
+        "ツルハ"
+      ],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "サンドラッグ",
+      "aliases": [
+        "SUNDRUG"
+      ],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ココカラファイン",
+      "aliases": [],
+      "maps_to": [
+        "ドラッグストア"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "カインズ",
+      "aliases": [
+        "CAINZ"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ホームセンターコーナン",
+      "aliases": [
+        "コーナン"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "DCM",
+      "aliases": [
+        "ＤＣＭ"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "コメリ",
+      "aliases": [
+        "KOMERI"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ビバホーム",
+      "aliases": [
+        "スーパービバホーム"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ナフコ",
+      "aliases": [
+        "NAFCO"
+      ],
+      "maps_to": [
+        "ホームセンター"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ヤマダデンキ",
+      "aliases": [
+        "ヤマダ電機"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ビックカメラ",
+      "aliases": [
+        "BIC CAMERA"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ヨドバシカメラ",
+      "aliases": [
+        "Yodobashi"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ケーズデンキ",
+      "aliases": [
+        "K'sデンキ",
+        "Ksデンキ"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "エディオン",
+      "aliases": [
+        "EDION"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ノジマ",
+      "aliases": [
+        "nojima"
+      ],
+      "maps_to": [
+        "家電量販店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "羽田空港",
+      "aliases": [
+        "東京国際空港"
+      ],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "成田国際空港",
+      "aliases": [
+        "成田空港"
+      ],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "関西国際空港",
+      "aliases": [
+        "関空"
+      ],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "中部国際空港",
+      "aliases": [
+        "セントレア",
+        "Centrair"
+      ],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "新千歳空港",
+      "aliases": [],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "福岡空港",
+      "aliases": [],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "那覇空港",
+      "aliases": [],
+      "maps_to": [
+        "空港"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "東京ディズニーランド",
+      "aliases": [
+        "ディズニーランド"
+      ],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "東京ディズニーシー",
+      "aliases": [
+        "ディズニーシー"
+      ],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "ユニバーサル・スタジオ・ジャパン",
+      "aliases": [
+        "ユニバーサルスタジオジャパン",
+        "USJ"
+      ],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "富士急ハイランド",
+      "aliases": [],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "よみうりランド",
+      "aliases": [],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "ナガシマスパーランド",
+      "aliases": [],
+      "maps_to": [
+        "遊園地"
+      ],
+      "kind": "facility"
+    },
+    {
+      "canonical_entity": "高島屋",
+      "aliases": [
+        "髙島屋"
+      ],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "三越",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "伊勢丹",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "大丸",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "松坂屋",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "そごう",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "西武百貨店",
+      "aliases": [],
+      "maps_to": [
+        "百貨店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "カラオケ館",
+      "aliases": [],
+      "maps_to": [
+        "カラオケ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ビッグエコー",
+      "aliases": [
+        "BIG ECHO"
+      ],
+      "maps_to": [
+        "カラオケ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "カラオケまねきねこ",
+      "aliases": [
+        "まねきねこ"
+      ],
+      "maps_to": [
+        "カラオケ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ジャンカラ",
+      "aliases": [],
+      "maps_to": [
+        "カラオケ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "エニタイムフィットネス",
+      "aliases": [
+        "ANYTIME FITNESS"
+      ],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "カーブス",
+      "aliases": [
+        "Curves"
+      ],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ゴールドジム",
+      "aliases": [
+        "GOLD'S GYM",
+        "GOLDS GYM"
+      ],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "コナミスポーツクラブ",
+      "aliases": [],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ティップネス",
+      "aliases": [
+        "TIPNESS"
+      ],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "スポーツクラブルネサンス",
+      "aliases": [],
+      "maps_to": [
+        "フィットネスクラブ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "マルハン",
+      "aliases": [
+        "MARUHAN"
+      ],
+      "maps_to": [
+        "パチンコ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ダイナム",
+      "aliases": [
+        "DYNAM"
+      ],
+      "maps_to": [
+        "パチンコ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "キコーナ",
+      "aliases": [],
+      "maps_to": [
+        "パチンコ店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ダイソー",
+      "aliases": [
+        "DAISO"
+      ],
+      "maps_to": [
+        "100円ショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "セリア",
+      "aliases": [
+        "Seria"
+      ],
+      "maps_to": [
+        "100円ショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "キャンドゥ",
+      "aliases": [
+        "Can Do",
+        "Can★Do",
+        "CanDo"
+      ],
+      "maps_to": [
+        "100円ショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ユニクロ",
+      "aliases": [
+        "UNIQLO"
+      ],
+      "maps_to": [
+        "アパレルショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ジーユー",
+      "aliases": [
+        "GU"
+      ],
+      "maps_to": [
+        "アパレルショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "しまむら",
+      "aliases": [],
+      "maps_to": [
+        "アパレルショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ABC-MART",
+      "aliases": [
+        "ABCマート",
+        "ABC MART"
+      ],
+      "maps_to": [
+        "靴屋"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "シャトレーゼ",
+      "aliases": [
+        "Chateraise"
+      ],
+      "maps_to": [
+        "洋菓子店"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "ニトリ",
+      "aliases": [
+        "NITORI"
+      ],
+      "maps_to": [
+        "インテリアショップ"
+      ],
+      "kind": "brand"
+    },
+    {
+      "canonical_entity": "イケア",
+      "aliases": [
+        "IKEA"
+      ],
+      "maps_to": [
+        "インテリアショップ"
+      ],
+      "kind": "brand"
+    }
+  ]
+}
