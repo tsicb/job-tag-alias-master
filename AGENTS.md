@@ -105,3 +105,13 @@ canonicalまたはstrict aliasが `可` / `OK` で終わる場合、語尾直前
 - オフィスの職種推論、ブランド名からの業態推定、点数制は現時点では未導入。
 - `リサイクルショップ → サイクルショップ`、`居酒屋 → 酒屋`、`販売店 → 売店`、`ネットカフェ → カフェ` のような文字列包含だけの誤爆は除外語で抑止する。
 - 上位就業場所タグを付ける場合は `config/matching-defaults.json` の `location_matching.implications` に明示する。matchedの子タグだけが親タグをmatchedへ派生させ、review/suppressedからは派生しない。
+
+
+## 就業場所entity mapping
+
+- 固有ブランド名・施設名は `data/location-entities.json` で管理し、alias列へ混ぜない。
+- entityは最も特徴的で安定して言えるcanonicalへ直接mapする。上位タグは `location_matching.implications` へ委ねる。
+- entity HITだけで即matchedにしない。勤務場所名・仕事名は強い証拠、仕事内容は就業文脈でmatched、配送・納品・訪問等はreview、住所・交通等はreview。
+- `セントレア → 空港`、`セブンイレブン → コンビニエンスストア` のような固有名詞→カテゴリ変換はentity mapping。
+- 企業名から業態を推測する一般推論は行わない。
+- 短いASCII entity alias（KFC / USJ / GU / DCM等）はASCII token境界を要求する。
