@@ -49,9 +49,11 @@ function run() {
   let passed = 0;
 
   for (const tc of cases) {
-    const result = tc.fields
-      ? analyzeFields(tc.fields, resources.master, resources.defaults, resources.entities)
-      : analyzeText(tc.text, resources.master, resources.defaults, resources.entities);
+    const result = resources.compiled
+      ? (tc.fields ? resources.compiled.analyzeFields(tc.fields) : resources.compiled.analyzeText(tc.text))
+      : (tc.fields
+          ? analyzeFields(tc.fields, resources.master, resources.defaults, resources.entities)
+          : analyzeText(tc.text, resources.master, resources.defaults, resources.entities));
     const errors = [];
 
     for (const c of tc.matched || []) if (!has(result.matched, c)) errors.push("確定にならない: " + c);

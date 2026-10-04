@@ -105,3 +105,23 @@ https://tsicb.github.io/job-tag-alias-master/
 
 Pages側でサーバー処理やAPIキーは不要です。ブラウザが同じrepo内の `data/job-tags.json` と `config/matching-defaults.json` を読み込みます。
 
+
+
+## Performance
+
+Advanced利用では `compileMatcher(master, defaults, entities)` を推奨する。
+
+compile時に以下を1回だけ準備する。
+
+- canonical / alias / generated variant の展開
+- 各検索語のNFKC正規化
+- ASCII token境界要否
+- 除外語の正規化
+- entity検索語
+- canonical逆引きMap
+
+これにより、求人1件ごとに同じ4,000件超の検索語を再構築しない。
+
+互換APIの `analyzeText()` / `analyzeFields()` は残すが、大量CSV処理ではcompiled matcherを再利用する。
+
+`scripts/test.mjs` はcompiled版と互換版の全回帰ケースの判定結果一致も検証する。

@@ -19,6 +19,7 @@ export async function loadResources() {
   if (!entitiesRes.ok) throw new Error("Location entities load failed: " + entitiesRes.status);
   const values = await Promise.all([masterRes.json(), defaultsRes.json(), entitiesRes.json()]);
   cache = { master: values[0], defaults: values[1], entities: values[2] };
+  cache.compiled = compileMatcher(cache.master, cache.defaults, cache.entities);
   return cache;
 }
 
@@ -54,10 +55,9 @@ function hasSemanticSuffixBoundary(text, start, length) {
   return /[\s、。・,.;:：；!！?？/／\\|｜()（）\[\]【】「」『』<>＜＞=＝+＋\-—–]/u.test(after);
 }
 
-function findAll(text, rawNeedle, options) {
+function findAllNormalized(text, needle, options) {
   const tokenBoundary = !!(options && options.tokenBoundary);
   const semanticSuffixBoundary = !!(options && options.semanticSuffixBoundary);
-  const needle = normalizeText(rawNeedle);
   if (!needle) return [];
   const hits = [];
   let from = 0;
@@ -72,6 +72,10 @@ function findAll(text, rawNeedle, options) {
     from = index + Math.max(1, needle.length);
   }
   return hits;
+}
+
+function findAll(text, rawNeedle, options) {
+  return findAllNormalized(text, normalizeText(rawNeedle), options);
 }
 
 function addAllowanceVariants(term) {
@@ -458,8 +462,8 @@ function classifyEntityLocationContext(tag, text, hit, fieldInfo, entity) {
   return { decision:"review", reason:"固有名詞は確認できるが就業場所としての関係確認が必要" };
 }
 
-function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities) {
-  const out = new Map();
+function compileEntityTerms(master, entities) {
+  const out = [];
   if (!entities || !Array.isArray(entities.entities)) return out;
 
   const tagByCanonical = new Map((master.tags || []).map(function(tag) {
@@ -467,37 +471,53 @@ function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entiti
   }));
 
   for (const entity of entities.entities) {
-    const terms = [entity.canonical_entity].concat(entity.aliases || []);
-    for (const rawTerm of terms) {
-      const term = normalizeText(rawTerm);
-      if (!term) continue;
-      const ascii = isAsciiOnly(term);
-      const tokenBoundary = ascii;
+    const targets = (entity.maps_to || [])
+      .map(function(canonical) { return tagByCanonical.get(canonical); })
+      .filter(function(tag) { return tag && tag.middle_category === "就業場所"; });
+    if (!targets.length) continue;
 
-      for (const hit of findAll(text, rawTerm, { tokenBoundary:tokenBoundary })) {
-        const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
+    for (const rawTerm of [entity.canonical_entity].concat(entity.aliases || [])) {
+      const normalizedTerm = normalizeText(rawTerm);
+      if (!normalizedTerm) continue;
+      out.push({
+        rawTerm:rawTerm,
+        normalizedTerm:normalizedTerm,
+        tokenBoundary:isAsciiOnly(normalizedTerm),
+        entity:entity,
+        targets:targets
+      });
+    }
+  }
+  return out;
+}
 
-        for (const targetCanonical of entity.maps_to || []) {
-          const tag = tagByCanonical.get(targetCanonical);
-          if (!tag || tag.middle_category !== "就業場所") continue;
+function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities, runtime) {
+  const out = new Map();
+  const preparedTerms = runtime && runtime.entityTerms
+    ? runtime.entityTerms
+    : compileEntityTerms(master, entities);
 
-          const ctx = classifyEntityLocationContext(tag, text, hit, fieldInfo, entity);
-          const evidence = {
-            decision:ctx.decision,
-            source:"entity",
-            term:rawTerm,
-            hitText:hit.text,
-            start:hit.start,
-            end:hit.end,
-            reason:ctx.reason,
-            fieldName:fieldInfo.name,
-            fieldGroup:fieldInfo.group,
-            entityCanonical:entity.canonical_entity,
-            entityKind:entity.kind || null
-          };
-          if (!out.has(targetCanonical)) out.set(targetCanonical, []);
-          out.get(targetCanonical).push(evidence);
-        }
+  for (const prepared of preparedTerms) {
+    for (const hit of findAllNormalized(text, prepared.normalizedTerm, { tokenBoundary:prepared.tokenBoundary })) {
+      const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
+
+      for (const tag of prepared.targets) {
+        const ctx = classifyEntityLocationContext(tag, text, hit, fieldInfo, prepared.entity);
+        const evidence = {
+          decision:ctx.decision,
+          source:"entity",
+          term:prepared.rawTerm,
+          hitText:hit.text,
+          start:hit.start,
+          end:hit.end,
+          reason:ctx.reason,
+          fieldName:fieldInfo.name,
+          fieldGroup:fieldInfo.group,
+          entityCanonical:prepared.entity.canonical_entity,
+          entityKind:prepared.entity.kind || null
+        };
+        if (!out.has(tag.canonical)) out.set(tag.canonical, []);
+        out.get(tag.canonical).push(evidence);
       }
     }
   }
@@ -505,13 +525,15 @@ function buildLocationEntityEvidence(text, master, defaults, fieldRanges, entiti
   return out;
 }
 
-function applyLocationImplications(results, master, defaults) {
+function applyLocationImplications(results, master, defaults, runtime) {
   const implications = defaults && defaults.location_matching && defaults.location_matching.implications;
   if (!implications) return;
 
-  const tagByCanonical = new Map((master.tags || []).map(function(tag) {
-    return [tag.canonical, tag];
-  }));
+  const tagByCanonical = runtime && runtime.tagByCanonical
+    ? runtime.tagByCanonical
+    : new Map((master.tags || []).map(function(tag) {
+        return [tag.canonical, tag];
+      }));
   const resultByCanonical = new Map(results.map(function(result) {
     return [result.canonical, result];
   }));
@@ -582,12 +604,122 @@ function applyLocationImplications(results, master, defaults) {
   }
 }
 
-function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
-  const results = [];
-  const entityEvidenceByCanonical = buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities);
+function nowMs() {
+  if (typeof performance !== "undefined" && performance && typeof performance.now === "function") {
+    return performance.now();
+  }
+  return Date.now();
+}
 
-  for (const tag of master.tags || []) {
-    const exclusions = exclusionRanges(text, tag);
+function compileTagRuntime(tag) {
+  const specs = buildTermSpecs(tag).map(function(spec) {
+    const normalizedTerm = normalizeText(spec.term);
+    return Object.assign({}, spec, {
+      normalizedTerm:normalizedTerm,
+      tokenBoundary:isAsciiOnly(normalizedTerm) &&
+        (tag.match_policy === "token_exact" || charLength(normalizedTerm) <= 3)
+    });
+  });
+
+  const excludeTerms = (tag.exclude_terms || []).map(function(term) {
+    return { rawTerm:term, normalizedTerm:normalizeText(term) };
+  });
+
+  return {
+    tag:tag,
+    specs:specs,
+    excludeTerms:excludeTerms,
+    isSea:tag.middle_category === "就業場所" && normalizeText(tag.canonical) === "海"
+  };
+}
+
+function compileRuntime(master, defaults, entities) {
+  const started = nowMs();
+  const tags = (master.tags || []).map(compileTagRuntime);
+  const tagByCanonical = new Map((master.tags || []).map(function(tag) {
+    return [tag.canonical, tag];
+  }));
+  const entityTerms = compileEntityTerms(master, entities);
+
+  return {
+    master:master,
+    defaults:defaults,
+    entities:entities,
+    tags:tags,
+    tagByCanonical:tagByCanonical,
+    entityTerms:entityTerms,
+    stats:{
+      tagCount:tags.length,
+      termCount:tags.reduce(function(sum, item) { return sum + item.specs.length; }, 0),
+      excludeTermCount:tags.reduce(function(sum, item) { return sum + item.excludeTerms.length; }, 0),
+      entityTermCount:entityTerms.length,
+      compileMs:nowMs() - started
+    }
+  };
+}
+
+function exclusionRangesPrepared(text, prepared) {
+  if (!prepared || !prepared.length) return [];
+  const out = [];
+  for (const item of prepared) {
+    for (const hit of findAllNormalized(text, item.normalizedTerm)) {
+      out.push(Object.assign({}, hit, { term:item.rawTerm }));
+    }
+  }
+  return out;
+}
+
+function normalizeFieldsInput(fields) {
+  const chunks = [];
+  const ranges = [];
+  let cursor = 0;
+
+  for (const field of fields || []) {
+    const value = normalizeText(field && field.value);
+    if (!value) continue;
+    if (chunks.length) {
+      chunks.push("\n");
+      cursor += 1;
+    }
+    const start = cursor;
+    chunks.push(value);
+    cursor += value.length;
+    ranges.push({
+      name:normalizeFieldName(field && field.name),
+      start:start,
+      end:cursor
+    });
+  }
+
+  return { text:chunks.join(""), ranges:ranges };
+}
+
+function analyzeNormalized(text, master, defaults, fieldRanges, entities, runtime, options) {
+  const profileEnabled = !!(options && options.profile);
+  const profile = profileEnabled ? {
+    entityMs:0,
+    tagScanMs:0,
+    implicationMs:0,
+    sortMs:0,
+    totalMs:0
+  } : null;
+  const totalStarted = profileEnabled ? nowMs() : 0;
+
+  const results = [];
+  const entityStarted = profileEnabled ? nowMs() : 0;
+  const entityEvidenceByCanonical = buildLocationEntityEvidence(text, master, defaults, fieldRanges, entities, runtime);
+  if (profileEnabled) profile.entityMs = nowMs() - entityStarted;
+
+  const scanStarted = profileEnabled ? nowMs() : 0;
+  const runtimeTags = runtime && runtime.tags
+    ? runtime.tags
+    : (master.tags || []).map(compileTagRuntime);
+
+  for (const runtimeTag of runtimeTags) {
+    const tag = runtimeTag.tag;
+    const exclusions = runtime
+      ? exclusionRangesPrepared(text, runtimeTag.excludeTerms)
+      : exclusionRanges(text, tag);
     const evidences = (entityEvidenceByCanonical.get(tag.canonical) || []).slice();
 
     if (tag.match_policy === "pattern") {
@@ -596,7 +728,7 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
       }
     }
 
-    if (tag.middle_category === "就業場所" && normalizeText(tag.canonical) === "海") {
+    if (runtimeTag.isSea) {
       for (const hit of seaPatternMatches(text)) {
         const fieldInfo = fieldInfoForHit(fieldRanges, hit, defaults);
         let decision = "matched";
@@ -610,12 +742,10 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
         }
         evidences.push({ decision:decision, source:"semantic_pattern", term:tag.canonical, hitText:hit.text, start:hit.start, end:hit.end, reason:reason, fieldName:fieldInfo.name, fieldGroup:fieldInfo.group });
       }
-    } else for (const spec of buildTermSpecs(tag)) {
-      const normalizedTerm = normalizeText(spec.term);
-      const ascii = isAsciiOnly(normalizedTerm);
-      const tokenBoundary = ascii && (tag.match_policy === "token_exact" || charLength(normalizedTerm) <= 3);
+    } else for (const spec of runtimeTag.specs) {
+      const tokenBoundary = spec.tokenBoundary;
 
-      for (const hit of findAll(text, spec.term, {
+      for (const hit of findAllNormalized(text, spec.normalizedTerm, {
         tokenBoundary: tokenBoundary,
         semanticSuffixBoundary: !!spec.semanticSuffixBoundary
       })) {
@@ -688,8 +818,13 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
     });
   }
 
-  applyLocationImplications(results, master, defaults);
+  if (profileEnabled) profile.tagScanMs = nowMs() - scanStarted;
 
+  const implicationStarted = profileEnabled ? nowMs() : 0;
+  applyLocationImplications(results, master, defaults, runtime);
+  if (profileEnabled) profile.implicationMs = nowMs() - implicationStarted;
+
+  const sortStarted = profileEnabled ? nowMs() : 0;
   const order = { matched:0, review:1, suppressed:2 };
   results.sort(function(a,b) {
     return order[a.decision]-order[b.decision] ||
@@ -697,6 +832,10 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
       a.middle_category.localeCompare(b.middle_category,"ja") ||
       a.canonical.localeCompare(b.canonical,"ja");
   });
+  if (profileEnabled) {
+    profile.sortMs = nowMs() - sortStarted;
+    profile.totalMs = nowMs() - totalStarted;
+  }
 
   return {
     results:results,
@@ -704,41 +843,38 @@ function analyzeNormalized(text, master, defaults, fieldRanges, entities) {
     review:results.filter(function(r){return r.decision==="review";}),
     suppressed:results.filter(function(r){return r.decision==="suppressed";}),
     confirmedCodes:results.filter(function(r){return r.decision==="matched";}).map(function(r){return r.tag_code;}),
-    reviewCodes:results.filter(function(r){return r.decision==="review";}).map(function(r){return r.tag_code;})
+    reviewCodes:results.filter(function(r){return r.decision==="review";}).map(function(r){return r.tag_code;}),
+    profile:profile
   };
 }
 
 
-export function analyzeText(sourceText, master, defaults, entities) {
-  return analyzeNormalized(normalizeText(sourceText), master, defaults, null, entities);
+export function compileMatcher(master, defaults, entities) {
+  const runtime = compileRuntime(master, defaults, entities);
+  return {
+    runtime:runtime,
+    stats:runtime.stats,
+    analyzeText(sourceText, options) {
+      return analyzeNormalized(normalizeText(sourceText), master, defaults, null, entities, runtime, options);
+    },
+    analyzeFields(fields, options) {
+      const normalized = normalizeFieldsInput(fields);
+      return analyzeNormalized(normalized.text, master, defaults, normalized.ranges, entities, runtime, options);
+    }
+  };
 }
 
-export function analyzeFields(fields, master, defaults, entities) {
-  const chunks = [];
-  const ranges = [];
-  let cursor = 0;
+export function analyzeText(sourceText, master, defaults, entities, options) {
+  return analyzeNormalized(normalizeText(sourceText), master, defaults, null, entities, null, options);
+}
 
-  for (const field of fields || []) {
-    const value = normalizeText(field && field.value);
-    if (!value) continue;
-    if (chunks.length) {
-      chunks.push("\n");
-      cursor += 1;
-    }
-    const start = cursor;
-    chunks.push(value);
-    cursor += value.length;
-    ranges.push({
-      name: normalizeFieldName(field && field.name),
-      start:start,
-      end:cursor
-    });
-  }
-
-  return analyzeNormalized(chunks.join(""), master, defaults, ranges, entities);
+export function analyzeFields(fields, master, defaults, entities, options) {
+  const normalized = normalizeFieldsInput(fields);
+  return analyzeNormalized(normalized.text, master, defaults, normalized.ranges, entities, null, options);
 }
 
 export async function analyze(sourceText) {
   const resources = await loadResources();
-  return analyzeText(sourceText, resources.master, resources.defaults, resources.entities);
+  const compiled = resources.compiled || compileMatcher(resources.master, resources.defaults, resources.entities);
+  return compiled.analyzeText(sourceText);
 }
