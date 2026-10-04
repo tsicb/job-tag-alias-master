@@ -44,3 +44,26 @@
 | pattern_rule | `pattern_rule` |
 
 現在のschema_version: `0.3.0`
+
+
+## config側の就業場所包含関係
+
+就業場所の親子関係はタグ行のalias列には入れず、`config/matching-defaults.json` の `location_matching.implications` で管理する。
+
+形式:
+
+```json
+{
+  "location_matching": {
+    "implications": {
+      "美容皮膚科クリニック": [
+        "美容クリニック",
+        "皮膚科クリニック",
+        "クリニック"
+      ]
+    }
+  }
+}
+```
+
+この関係は同義語ではなく、matched済みの子タグから広告マッチング上妥当な親タグを派生するためのもの。alias_strict / alias_looseとは別概念として扱う。
